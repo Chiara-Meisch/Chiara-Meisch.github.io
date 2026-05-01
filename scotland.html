@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- TODO: Update the page title for each post -->
+<title>Diary of farm work in Scotland — Chiara Meisch</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #e8f0f6;
+    --ink: #18253a;
+    --muted: #2c4a6b;
+    --rule: #5a7595;
+    --accent: #1f4180;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .italic { font-style: italic; color: var(--accent); }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 32px 80px;
+  }
+
+  /* Back link */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 56px;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  .back-link:hover .arrow {
+    transform: translateX(-3px);
+  }
+
+  .back-link .arrow {
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+
+  /* Article header */
+  .article-header {
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+  }
+
+  .article-header .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .article-header h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+
+  .article-header .subtitle {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--muted);
+    max-width: 580px;
+  }
+
+  /* Hero image */
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    margin-bottom: 56px;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.1s;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-image.empty::after {
+    content: "add hero photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Article body */
+  .article-body {
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  .article-body p {
+    margin-bottom: 22px;
+    font-size: 19px;
+    line-height: 1.75;
+  }
+
+  .article-body p.lede::first-letter {
+    font-family: 'Newsreader', serif;
+    font-size: 56px;
+    line-height: 0.85;
+    float: left;
+    padding: 6px 10px 0 0;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .article-body h2 {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.2;
+    margin: 48px 0 18px;
+    color: var(--ink);
+  }
+
+  .article-body blockquote {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--muted);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 36px 0;
+  }
+
+  .article-body figure {
+    margin: 48px 0;
+  }
+
+  .article-body figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: var(--rule);
+  }
+
+  .article-body figure figcaption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Image placeholder for inline figures */
+  .image-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+    position: relative;
+  }
+
+  .image-placeholder::after {
+    content: "add photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Footer / signature */
+  .article-footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.02em;
+  }
+
+  /* Animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .container { padding: 24px 24px 56px; }
+    .article-body p { font-size: 17px; }
+    .article-body p.lede::first-letter { font-size: 44px; }
+    .article-body h2 { font-size: 24px; margin: 36px 0 14px; }
+    .article-body blockquote { font-size: 19px; padding-left: 18px; }
+    .article-footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Back link to home -->
+  <a href="index.html" class="back-link">
+    <span class="arrow">←</span> Back to home
+  </a>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="meta">Scotland · May 2022 · 11 min read</div>
+    <h1>Diary of farm work in Scotland</h1>
+    <p class="subtitle">
+      Three weeks on a small farm in the Highlands — what manual work taught me about attention, the weather, and the limits of being indoors.
+    </p>
+  </header>
+
+  <!-- HERO IMAGE -->
+  <!--
+    TO ADD A HERO PHOTO: replace the line below with:
+    <div class="hero-image"><img src="taiwan-hero.jpg" alt="Description of photo" /></div>
+  -->
+  <div class="hero-image empty"></div>
+
+  <!-- ARTICLE BODY -->
+  <article class="article-body">
+
+    <p class="lede">
+      Start your essay with a strong opening paragraph. The first letter will appear as a large drop cap in the accent color. Keep this opening grounded in a specific moment — a place, a sound, a small encounter — rather than a general statement. Specificity earns the reader's attention.
+    </p>
+
+    <p>
+      Continue with a second paragraph that opens the scope of the piece slightly. What is this trip about, beyond the geography? What were you looking for, what did you find, what surprised you? Don't tell the reader what the essay is *about* — let them discover it.
+    </p>
+
+    <p>
+      A third paragraph can introduce a contrast, a complication, or a moment of doubt. Travel essays work best when they have texture — when the writer admits to confusion, frustration, or a misread cue. The reader trusts you more when you're honest about the seams.
+    </p>
+
+    <h2>A subheading, italicised</h2>
+
+    <p>
+      Use a section break like this to shift gears — a new place, a new theme, a new day. Subheadings give the reader a sense of pacing and let the essay breathe. They also work as small invitations: a good subheading is just intriguing enough that you keep reading.
+    </p>
+
+    <p>
+      Continue the section with two or three paragraphs that develop one idea fully before moving on. Travel writing rewards patience: long sentences for landscapes, shorter ones for action, and the occasional fragment for emphasis.
+    </p>
+
+    <!-- INLINE PHOTO -->
+    <!--
+      TO ADD AN INLINE PHOTO: replace the placeholder below with:
+      <figure>
+        <img src="taiwan-market.jpg" alt="Description of photo" />
+        <figcaption>A short caption — where, when, what is happening.</figcaption>
+      </figure>
+    -->
+    <figure>
+      <div class="image-placeholder"></div>
+      <figcaption>Caption goes here — where, when, what is happening.</figcaption>
+    </figure>
+
+    <p>
+      After an image, you can pick the thread back up or pivot. The image gives the reader a moment to rest, which means you can be a little denser in the paragraph that follows.
+    </p>
+
+    <blockquote>
+      A pull quote — something a stranger said, a phrase that stuck with you, or a sentence from your notebook that you want to single out.
+    </blockquote>
+
+    <p>
+      Quotes work best when they come from people you actually met, not when they paraphrase a thought you had. The specificity of someone else's words gives the essay a heartbeat.
+    </p>
+
+    <h2>What I took home</h2>
+
+    <p>
+      Most travel essays end with some form of reflection — but resist the urge to summarise the lesson neatly. The best endings are quiet: an image, a small observation, a sentence that doesn't quite resolve. Trust the reader to do the closing work.
+    </p>
+
+    <p>
+      End on a sentence you'd be willing to say out loud.
+    </p>
+
+  </article>
+
+  <!-- ARTICLE FOOTER -->
+  <footer class="article-footer">
+    <span>Chiara Meisch · 2022</span>
+    <span><a href="index.html" style="color: inherit;">← Home</a></span>
+  </footer>
+
+</div>
+
+</body>
+</html>
