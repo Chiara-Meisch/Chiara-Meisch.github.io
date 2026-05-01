@@ -87,6 +87,32 @@
     padding-left: 4px;
   }
 
+  .sidebar nav a.sub {
+  padding-left: 14px;
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.sidebar nav a.sub:hover {
+  padding-left: 18px;
+  opacity: 1;
+}
+
+.sidebar nav a.group-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-top: 4px;
+  text-decoration: none;
+  transition: color 0.2s ease, padding-left 0.25s ease;
+}
+
+.sidebar nav a.group-label:hover {
+  color: var(--accent);
+  padding-left: 4px;
+}
   /* Hero */
   .hero {
     padding: 0 0 72px;
@@ -154,7 +180,7 @@
 
   .about p:last-child { margin-bottom: 0; }
 
-  /* Generic entry list (used for Writing, Degrees, Work, International, Certificates, Recipes) */
+  /* Generic entry list (used for Writing, Degrees, Work, International, Professional Development, Recipes) */
   .entry-list { list-style: none; }
 
   .entry-item {
@@ -396,18 +422,24 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-name">Chiara Meisch</div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#degrees">Degrees</a>
-      <a href="#work">Work experience</a>
-      <a href="#international">International</a>
-      <a href="#certificates">Certificates</a>
-      <a href="#languages">Languages</a>
-      <a href="#writing">Writing</a>
-      <a href="#travel">Travel Blog</a>
-      <a href="#hobbies">Hobbies</a>
-      <a href="#contact">Contact</a>
-    </nav>
+<nav>
+  <a href="#about">About</a>
+
+  <a href="#degrees" class="group-label">Education</a>
+  <a href="#degrees" class="sub">Degrees</a>
+  <a href="#certificates" class="sub">Certificates</a>
+
+  <a href="#work">Work experience</a>
+  <a href="#international">International</a>
+  <a href="#languages">Languages</a>
+
+  <a href="#writing" class="group-label">Projects</a>
+  <a href="#writing" class="sub">Writing</a>
+  <a href="#travel" class="sub">Travel Blog</a>
+
+  <a href="#hobbies">Hobbies</a>
+  <a href="#contact">Contact</a>
+</nav>
   </aside>
 
   <!-- MAIN CONTENT -->
