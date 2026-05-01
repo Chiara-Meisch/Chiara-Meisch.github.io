@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- TODO: Replace "Your Name" with your actual name -->
+<title>Your Name — Writing & Research</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #e8f0f6;
+    --ink: #18253a;
+    --muted: #2c4a6b;
+    --rule: #5a7595;
+    --accent: #1f4180;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  .italic { font-style: italic; color: var(--accent); }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* Header */
+  header {
+    padding: 40px 0 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  header .mark {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    letter-spacing: -0.005em;
+  }
+
+  header nav {
+    display: flex;
+    gap: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+  }
+
+  header nav a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  header nav a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero {
+    padding: 88px 0 72px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+  }
+
+  .hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 36px;
+  }
+
+  .hero h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 60px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 28px;
+  }
+
+  .hero p.lede {
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 580px;
+  }
+
+  /* Sections */
+  section {
+    padding: 56px 0;
+    border-top: 1px solid var(--rule);
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  section + section { animation-delay: 0.3s; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  /* About */
+  .about p {
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+
+  .about p:last-child { margin-bottom: 0; }
+
+  /* Writing list */
+  .writing-list { list-style: none; }
+
+  .writing-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px 24px;
+    align-items: baseline;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+    transition: padding 0.3s ease;
+  }
+
+  .writing-item:hover { padding-left: 10px; }
+
+  .writing-item .title {
+    font-family: 'Newsreader', serif;
+    font-size: 22px;
+    line-height: 1.3;
+    font-weight: 400;
+  }
+
+  .writing-item .meta {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .writing-item .year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    align-self: start;
+    padding-top: 6px;
+  }
+
+  /* Travel */
+  .travel-list { list-style: none; }
+
+  .travel-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 22px;
+    align-items: center;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+    transition: padding 0.3s ease;
+  }
+
+  .travel-item:hover { padding-left: 10px; }
+
+  .travel-thumb {
+    width: 130px;
+    height: 95px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+  }
+
+  .travel-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .travel-thumb.empty::after {
+    content: "add photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .travel-text .title {
+    font-family: 'Newsreader', serif;
+    font-size: 21px;
+    line-height: 1.3;
+    display: block;
+  }
+
+  .travel-text .meta {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Languages */
+  .languages dl {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 14px 24px;
+  }
+
+  .languages dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    padding-top: 4px;
+  }
+
+  .languages dd {
+    font-size: 18px;
+    line-height: 1.55;
+  }
+
+  .languages dd em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* Contact */
+  .contact h2 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(30px, 4.5vw, 40px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    font-size: 17px;
+  }
+
+  .links a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .links a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* Footer */
+  footer {
+    padding: 40px 0 56px;
+    border-top: 1px solid var(--rule);
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.02em;
+  }
+
+  /* Animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    header { padding: 28px 0 20px; }
+    header nav { gap: 16px; }
+    .hero { padding: 56px 0 44px; }
+    section { padding: 44px 0; }
+    .languages dl {
+      grid-template-columns: 90px 1fr;
+      gap: 10px 18px;
+    }
+    .languages dd { font-size: 16px; }
+    .travel-item {
+      grid-template-columns: 100px 1fr;
+      gap: 16px;
+    }
+    .travel-thumb {
+      width: 100px;
+      height: 75px;
+    }
+    .travel-text .title { font-size: 18px; }
+    footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <!-- TODO: Replace with your name -->
+    <div class="mark">Your Name</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#writing">Writing</a>
+      <a href="#travel">Travel</a>
+      <a href="#languages">Languages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" style="border-top: none; padding-top: 88px;">
+    <div class="eyebrow">Linguistics · Science communication</div>
+    <h1>
+      <!-- TODO: Replace this headline. The italic phrase is the emphasis — use it for the idea you care most about. -->
+      I think and write about how <span class="italic">we make meaning</span> — in language, in science, and in the stories we tell about both.
+    </h1>
+    <p class="lede">
+      <!-- TODO: Replace with 1–2 sentences about your research interests or what you're working on. -->
+      Researcher and writer based in [your city]. Interested in [your subfield], the public understanding of [topic], and the history of ideas in between.
+    </p>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="section-label">About</div>
+    <!-- TODO: Replace these paragraphs with your actual background. -->
+    <p>I'm a [PhD candidate / researcher / writer / lecturer] working at the intersection of [field A] and [field B]. My research focuses on [your research question], with particular attention to [specific angle].</p>
+    <p>Before [current role], I studied [degree] at [institution] and worked on [previous project or role]. My writing has appeared in [publication], [publication], and [publication].</p>
+    <p>I'm drawn to questions that sit between disciplines — where linguistics meets cognitive science, or where the way scientists talk shapes what the public ends up believing.</p>
+  </section>
+
+  <!-- WRITING -->
+  <section id="writing">
+    <div class="section-label">Selected writing</div>
+    <ul class="writing-list">
+
+      <!-- TODO: Replace each item below with a real essay, paper, or article. Add or remove items freely. -->
+      <li>
+        <a href="#" class="writing-item">
+          <span class="title">
+            On the metaphors we live by, and the ones we should retire
+            <span class="meta">Essay · The Atlantic · 12 min read</span>
+          </span>
+          <span class="year">2025</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="writing-item">
+          <span class="title">
+            What it means to translate science: a working vocabulary
+            <span class="meta">Long-form · Public Books · 18 min read</span>
+          </span>
+          <span class="year">2025</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="writing-item">
+          <span class="title">
+            The grammar of uncertainty in climate journalism
+            <span class="meta">Peer-reviewed · Discourse &amp; Society</span>
+          </span>
+          <span class="year">2024</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="writing-item">
+          <span class="title">
+            Why "follow the science" was always the wrong sentence
+            <span class="meta">Essay · Aeon · 9 min read</span>
+          </span>
+          <span class="year">2024</span>
+        </a>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- TRAVEL BLOG -->
+  <section id="travel">
+    <div class="section-label">From my travel blog</div>
+    <ul class="travel-list">
+
+      <!--
+        TODO: Replace each entry below with a real post from your travel blog.
+        TO ADD A PHOTO: replace the line `<div class="travel-thumb empty"></div>`
+        with `<div class="travel-thumb"><img src="path/to/your-image.jpg" alt="" /></div>`
+        — your image will be cropped to fit the frame automatically.
+      -->
+
+      <li>
+        <a href="#" class="travel-item">
+          <div class="travel-thumb empty"></div>
+          <div class="travel-text">
+            <span class="title">A week of slow mornings in Lisbon</span>
+            <span class="meta">Portugal · April 2025 · 8 min read</span>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="travel-item">
+          <div class="travel-thumb empty"></div>
+          <div class="travel-text">
+            <span class="title">Notes from a train across Hokkaido</span>
+            <span class="meta">Japan · February 2025 · 14 min read</span>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="travel-item">
+          <div class="travel-thumb empty"></div>
+          <div class="travel-text">
+            <span class="title">What the markets in Oaxaca taught me about translation</span>
+            <span class="meta">Mexico · November 2024 · 11 min read</span>
+          </div>
+        </a>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section id="languages" class="languages">
+    <div class="section-label">Languages</div>
+    <!-- TODO: Replace these with your actual languages and proficiency levels. -->
+    <dl>
+      <dt>English</dt>
+      <dd>Native</dd>
+
+      <dt>Swedish</dt>
+      <dd>Fluent · daily working language</dd>
+
+      <dt>German</dt>
+      <dd>Conversational · <em>B2</em></dd>
+
+      <dt>French</dt>
+      <dd>Reading proficiency</dd>
+
+      <dt>Latin</dt>
+      <dd>Academic reading only</dd>
+    </dl>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="section-label">Get in touch</div>
+    <h2>
+      I'd love to hear from you, especially about <span class="italic">collaborations, edits, or ideas in progress</span>.
+    </h2>
+    <div class="links">
+      <!-- TODO: Replace with your real email and links. -->
+      <a href="mailto:hello@yourname.com">hello@yourname.com</a>
+      <a href="#" target="_blank" rel="noopener">CV (PDF)</a>
+      <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://bsky.app/" target="_blank" rel="noopener">Bluesky</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Your Name</span>
+    <span>last updated · spring 2026</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
