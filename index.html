@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chiara Meisch — Writing & Research</title>
+<title>NAME — Writing & Research</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,15 +20,6 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  .links a.with-icon {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.links a.with-icon svg {
-  flex-shrink: 0;
-}
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -42,54 +33,63 @@
     text-rendering: optimizeLegibility;
   }
 
-  .mono {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-  }
-
   .italic { font-style: italic; color: var(--accent); }
 
-  .container {
-    max-width: 680px;
+  /* Layout: sidebar + content */
+  .layout {
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 64px;
+    padding: 56px 40px 0;
   }
 
-  /* Header */
-  header {
-    padding: 40px 0 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    border-bottom: 1px solid var(--rule);
+  .content { max-width: 660px; min-width: 0; }
+
+  /* Sidebar */
+  .sidebar {
+    position: sticky;
+    top: 48px;
+    align-self: start;
+    height: fit-content;
   }
 
-  header .mark {
+  .sidebar-name {
     font-family: 'Newsreader', serif;
     font-style: italic;
-    font-size: 22px;
-    letter-spacing: -0.005em;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 36px;
   }
 
-  header nav {
+  .sidebar nav {
     display: flex;
-    gap: 24px;
+    flex-direction: column;
+    gap: 11px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
     letter-spacing: 0.02em;
     color: var(--muted);
   }
 
-  header nav a {
+  .sidebar nav a {
     color: inherit;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, padding-left 0.25s ease;
   }
 
-  header nav a:hover { color: var(--ink); }
+  .sidebar nav a:hover {
+    color: var(--ink);
+    padding-left: 4px;
+  }
 
   /* Hero */
   .hero {
-    padding: 88px 0 72px;
+    padding: 0 0 72px;
     opacity: 0;
     animation: fadeUp 0.9s ease forwards;
   }
@@ -105,7 +105,7 @@
   .hero h1 {
     font-family: 'Newsreader', serif;
     font-weight: 400;
-    font-size: clamp(40px, 6vw, 60px);
+    font-size: clamp(36px, 5.5vw, 54px);
     line-height: 1.1;
     letter-spacing: -0.015em;
     margin-bottom: 28px;
@@ -118,7 +118,7 @@
     max-width: 580px;
   }
 
-  /* Sections */
+  /* Section base */
   section {
     padding: 56px 0;
     border-top: 1px solid var(--rule);
@@ -137,6 +137,14 @@
     margin-bottom: 32px;
   }
 
+  .subsection-label {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink);
+    margin: 36px 0 18px;
+  }
+
   /* About */
   .about p {
     font-size: 19px;
@@ -146,10 +154,10 @@
 
   .about p:last-child { margin-bottom: 0; }
 
-  /* Writing list */
-  .writing-list { list-style: none; }
+  /* Generic entry list (used for Writing, Degrees, Work, International, Certificates, Recipes) */
+  .entry-list { list-style: none; }
 
-  .writing-item {
+  .entry-item {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 16px 24px;
@@ -161,16 +169,16 @@
     transition: padding 0.3s ease;
   }
 
-  .writing-item:hover { padding-left: 10px; }
+  a.entry-item:hover { padding-left: 10px; }
 
-  .writing-item .title {
+  .entry-item .title {
     font-family: 'Newsreader', serif;
     font-size: 22px;
     line-height: 1.3;
     font-weight: 400;
   }
 
-  .writing-item .meta {
+  .entry-item .meta {
     display: block;
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
@@ -179,13 +187,14 @@
     letter-spacing: 0.02em;
   }
 
-  .writing-item .year {
+  .entry-item .year {
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     color: var(--muted);
     font-variant-numeric: tabular-nums;
     align-self: start;
     padding-top: 6px;
+    white-space: nowrap;
   }
 
   /* Travel Blog */
@@ -275,11 +284,18 @@
     color: var(--accent);
   }
 
+  /* Hobbies */
+  .hobbies p {
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
   /* Contact */
   .contact h2 {
     font-family: 'Newsreader', serif;
     font-weight: 400;
-    font-size: clamp(30px, 4.5vw, 40px);
+    font-size: clamp(26px, 4vw, 36px);
     line-height: 1.15;
     letter-spacing: -0.01em;
     margin-bottom: 28px;
@@ -304,13 +320,14 @@
     color: var(--accent);
     border-color: var(--accent);
   }
-  
-  <a href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener" class="with-icon">
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-  </svg>
-  LinkedIn
-</a>
+
+  .links a.with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .links a.with-icon svg { flex-shrink: 0; }
 
   /* Footer */
   footer {
@@ -332,11 +349,27 @@
   }
 
   /* Mobile */
+  @media (max-width: 900px) {
+    .layout {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      padding: 32px 28px 0;
+    }
+    .sidebar {
+      position: static;
+      height: auto;
+    }
+    .sidebar-name { font-size: 32px; margin-bottom: 24px; }
+    .sidebar nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+    }
+  }
+
   @media (max-width: 600px) {
     body { font-size: 17px; }
-    header { padding: 28px 0 20px; }
-    header nav { gap: 16px; }
-    .hero { padding: 56px 0 44px; }
+    .hero { padding-bottom: 44px; }
     section { padding: 44px 0; }
     .languages dl {
       grid-template-columns: 90px 1fr;
@@ -358,167 +391,330 @@
 </head>
 <body>
 
-<div class="container">
+<div class="layout">
 
-  <header>
-    <div class="mark">Chiara Meisch</div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-name">NAME</div>
     <nav>
       <a href="#about">About</a>
+      <a href="#degrees">Degrees</a>
+      <a href="#work">Work experience</a>
+      <a href="#international">International</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#languages">Languages</a>
       <a href="#writing">Writing</a>
       <a href="#travel">Travel</a>
-      <a href="#languages">Languages</a>
+      <a href="#hobbies">Hobbies</a>
       <a href="#contact">Contact</a>
     </nav>
-  </header>
+  </aside>
 
-  <!-- HERO -->
-  <section class="hero" style="border-top: none; padding-top: 88px;">
-    <div class="eyebrow">Linguistics · Science communication</div>
-    <h1>
-      I think and write about how <span class="italic">we make meaning</span> in language, in science and in the stories we tell about both.
-    </h1>
-    <p class="lede">
-      I am a Master of Science graduate in linguistics based in Berlin (Germany) and Lund (Sweden). I am interested in how language and technologay can be combined to... 
-  </section>
+  <!-- MAIN CONTENT -->
+  <main class="content">
 
-  <!-- ABOUT -->
-  <section id="about" class="about">
-    <div class="section-label">About</div>
-    <p>I am interested in the intersection of linguistics, communication and technology. </p>
-    <p>I studied International and Experimental Linguistics at the University of Potsdam and worked as a research assistant on .... </p>
-    <p>I am interested in  questions that sit between disciplines such as where linguistics meets Ai technology or where the way scientists talk shapes what the public ends up believing.</p>
-  </section>
+    <!-- HERO -->
+    <section class="hero" style="border-top: none;">
+      <div class="eyebrow">Linguistics · Science communication</div>
+      <h1>
+        I think and write about how <span class="italic">we make meaning</span> in language, in science and in the stories we tell about both.
+      </h1>
+      <p class="lede">
+        I am a Master of Science graduate in linguistics based in Berlin (Germany) and Lund (Sweden). I am interested in how language and technology can be combined to...
+      </p>
+    </section>
 
-  <!-- WRITING -->
-  <section id="writing">
-    <div class="section-label">Selected writing</div>
-    <ul class="writing-list">
+    <!-- ABOUT -->
+    <section id="about" class="about">
+      <div class="section-label">About</div>
+      <p>I am interested in the intersection of linguistics, communication and technology.</p>
+      <p>I studied International and Experimental Linguistics at the University of Potsdam and worked as a research assistant on ....</p>
+      <p>I am interested in questions that sit between disciplines such as where linguistics meets AI technology or where the way scientists talk shapes what the public ends up believing.</p>
+    </section>
 
-  
-      <li>
-        <a href="#" class="writing-item">
-          <span class="title">
-            Title
-            <span class="meta">Essay · NAME · read time</span>
-          </span>
-          <span class="year">date</span>
-        </a>
-      </li>
+    <!-- DEGREES -->
+    <section id="degrees">
+      <div class="section-label">Degrees</div>
+      <ul class="entry-list">
 
-      #possibly add more
-
-    </ul>
-  </section>
-
-  <!-- TRAVEL BLOG -->
-  <section id="travel">
-    <div class="section-label">From my travel blog</div>
-    <ul class="travel-list">
-
-      <!--
-        TO ADD A PHOTO: replace the line `<div class="travel-thumb empty"></div>`
-        with `<div class="travel-thumb"><img src="path/to/your-image.jpg" alt="" /></div>`
-        image will be cropped to fit the frame automatically.
-      -->
-
-      <li>
-        <a href="#" class="travel-item">
-          <div class="travel-thumb empty"></div>
-          <div class="travel-text">
-            <span class="title">A month in Taiwan</span>
-            <span class="meta">Taiwan · March 2025 · 8 min read</span>
+        <!-- TODO: Replace with your real degrees. Add or remove items freely. -->
+        <li>
+          <div class="entry-item">
+            <span class="title">
+              M.Sc. International and Experimental Linguistics
+              <span class="meta">University of Potsdam · Thesis: [thesis title]</span>
+            </span>
+            <span class="year">2023 – 2025</span>
           </div>
-        </a>
-      </li>
+        </li>
 
-      <li>
-        <a href="#" class="travel-item">
-          <div class="travel-thumb empty"></div>
-          <div class="travel-text">
-            <span class="title">What solo travelling taught me</span>
-            <span class="meta">Costa Rica · March 2023 · 14 min read</span>
+        <li>
+          <div class="entry-item">
+            <span class="title">
+              B.A. [field of study]
+              <span class="meta">[University name] · Thesis: [thesis title]</span>
+            </span>
+            <span class="year">2019 – 2022</span>
           </div>
-        </a>
-      </li>
+        </li>
 
-      <li>
-        <a href="#" class="travel-item">
-          <div class="travel-thumb empty"></div>
-          <div class="travel-text">
-            <span class="title">Travelling the Faroe Islands</span>
-            <span class="meta">Faroe Islands· June 2022 · 11 min read</span>
+      </ul>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section id="work">
+      <div class="section-label">Work experience</div>
+      <ul class="entry-list">
+
+        <!-- TODO: Replace with your real work experience. -->
+        <li>
+          <div class="entry-item">
+            <span class="title">
+              Research assistant
+              <span class="meta">[Lab or department name] · [brief description of what you did]</span>
+            </span>
+            <span class="year">2023 – 2025</span>
           </div>
-        </a>
-      </li>
+        </li>
 
-      <li>
-        <a href="#" class="travel-item">
-          <div class="travel-thumb empty"></div>
-          <div class="travel-text">
-            <span class="title">Diary of farm work in Scotland</span>
-            <span class="meta">Scotland · May 2022 · 11 min read</span>
+        <li>
+          <div class="entry-item">
+            <span class="title">
+              [Previous role]
+              <span class="meta">[Organisation] · [brief description]</span>
+            </span>
+            <span class="year">2022 – 2023</span>
           </div>
-        </a>
-      </li>
+        </li>
 
-      <li>
-        <a href="#" class="travel-item">
-          <div class="travel-thumb empty"></div>
-          <div class="travel-text">
-            <span class="title">Cultural Explorations of China</span>
-            <span class="meta">China · March 2018 · 11 min read</span>
+      </ul>
+    </section>
+
+    <!-- INTERNATIONAL EXPERIENCE -->
+    <section id="international">
+      <div class="section-label">International experience</div>
+      <ul class="entry-list">
+
+        <!-- TODO: Replace with your real international experience — exchanges, research stays, internships abroad, etc. -->
+        <li>
+          <div class="entry-item">
+            <span class="title">
+              Erasmus exchange semester
+              <span class="meta">Lund University, Sweden · [brief note]</span>
+            </span>
+            <span class="year">2025</span>
           </div>
+        </li>
+
+        <li>
+          <div class="entry-item">
+            <span class="title">
+              [Research stay or internship]
+              <span class="meta">[Institution, country] · [brief note]</span>
+            </span>
+            <span class="year">2024</span>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section id="certificates">
+      <div class="section-label">Certificates</div>
+      <ul class="entry-list">
+
+        <!-- TODO: Replace with your real certificates. -->
+        <li>
+          <div class="entry-item">
+            <span class="title">
+              [Certificate name]
+              <span class="meta">[Issuing organisation]</span>
+            </span>
+            <span class="year">2024</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="entry-item">
+            <span class="title">
+              [Certificate name]
+              <span class="meta">[Issuing organisation]</span>
+            </span>
+            <span class="year">2023</span>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section id="languages" class="languages">
+      <div class="section-label">Languages</div>
+      <dl>
+        <dt>German</dt>
+        <dd>Native</dd>
+
+        <dt>English</dt>
+        <dd>C2</dd>
+
+        <dt>French</dt>
+        <dd>C1</dd>
+
+        <dt>Spanish</dt>
+        <dd>B1</dd>
+
+        <dt>Swedish</dt>
+        <dd>A2</dd>
+
+        <dt>Italian</dt>
+        <dd>A1</dd>
+
+        <dt>Mandarin</dt>
+        <dd>A1</dd>
+      </dl>
+    </section>
+
+    <!-- WRITING -->
+    <section id="writing">
+      <div class="section-label">Selected writing</div>
+      <ul class="entry-list">
+
+        <li>
+          <a href="#" class="entry-item">
+            <span class="title">
+              Title
+              <span class="meta">Essay · NAME · read time</span>
+            </span>
+            <span class="year">date</span>
+          </a>
+        </li>
+
+        <!-- TODO: add more entries here as needed -->
+
+      </ul>
+    </section>
+
+    <!-- TRAVEL BLOG -->
+    <section id="travel">
+      <div class="section-label">From my travel blog</div>
+      <ul class="travel-list">
+
+        <!--
+          TO ADD A PHOTO: replace the line `<div class="travel-thumb empty"></div>`
+          with `<div class="travel-thumb"><img src="path/to/your-image.jpg" alt="" /></div>`
+          image will be cropped to fit the frame automatically.
+        -->
+
+        <li>
+          <a href="#" class="travel-item">
+            <div class="travel-thumb empty"></div>
+            <div class="travel-text">
+              <span class="title">A month in Taiwan</span>
+              <span class="meta">Taiwan · March 2025 · 8 min read</span>
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="travel-item">
+            <div class="travel-thumb empty"></div>
+            <div class="travel-text">
+              <span class="title">What solo travelling taught me</span>
+              <span class="meta">Costa Rica · March 2023 · 14 min read</span>
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="travel-item">
+            <div class="travel-thumb empty"></div>
+            <div class="travel-text">
+              <span class="title">Travelling the Faroe Islands</span>
+              <span class="meta">Faroe Islands · June 2022 · 11 min read</span>
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="travel-item">
+            <div class="travel-thumb empty"></div>
+            <div class="travel-text">
+              <span class="title">Diary of farm work in Scotland</span>
+              <span class="meta">Scotland · May 2022 · 11 min read</span>
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="travel-item">
+            <div class="travel-thumb empty"></div>
+            <div class="travel-text">
+              <span class="title">Cultural explorations of China</span>
+              <span class="meta">China · March 2018 · 11 min read</span>
+            </div>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- HOBBIES -->
+    <section id="hobbies" class="hobbies">
+      <div class="section-label">Hobbies</div>
+      <!-- TODO: Replace with your actual hobbies. Keep it short and specific. -->
+      <p>Outside of research and writing, I spend my time [hobby], [hobby], and [hobby]. Cooking is a long-running thread — I keep a small collection of recipes I come back to.</p>
+
+      <div class="subsection-label">Favourite recipes</div>
+      <ul class="entry-list">
+
+        <!-- TODO: Replace with two of your favourite recipes. The link can point to wherever the recipe lives. -->
+        <li>
+          <a href="#" class="entry-item">
+            <span class="title">
+              [Recipe name #1]
+              <span class="meta">[Cuisine or category] · [a short note about it]</span>
+            </span>
+            <span class="year">view →</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="entry-item">
+            <span class="title">
+              [Recipe name #2]
+              <span class="meta">[Cuisine or category] · [a short note about it]</span>
+            </span>
+            <span class="year">view →</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <div class="section-label">Get in touch</div>
+      <h2>
+        I would love to hear from you, especially about <span class="italic">collaborations, edits or ideas in progress</span>.
+      </h2>
+      <div class="links">
+        <a href="#" target="_blank" rel="noopener">CV (PDF)</a>
+        <a href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener" class="with-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
         </a>
-      </li>
+      </div>
+    </section>
 
-    </ul>
-  </section>
+    <footer>
+      <span>© 2026 NAME</span>
+      <span>Last updated · Spring 2026</span>
+    </footer>
 
-  <!-- LANGUAGES -->
-  <section id="languages" class="languages">
-    <div class="section-label">Languages</div>
-    <dl>
-      <dt>German</dt>
-      <dd>Native</dd>
-
-      <dt>English</dt>
-      <dd>C2</dd>
-
-      <dt>French</dt>
-      <dd>C1</dd>
-
-      <dt>Spanish</dt>
-      <dd>B1</dd>
-
-      <dt>Swedish</dt>
-      <dd>A2</dd>
-
-      <dt>Italian</dt>
-      <dd>A1</dd>
-
-      <dt>Mandarin</dt>
-      <dd>A1</dd>
-      
-    </dl>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <div class="section-label">Get in touch</div>
-    <h2>
-      I would love to hear from you, especially about <span class="italic">collaborations, edits or ideas in progress</span>.
-    </h2>
-    <div class="links">
-      <a href="#" target="_blank" rel="noopener">CV (PDF)</a>
-      <a href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </section>
-
-  <footer>
-    <span>© 2026 Chiara Meisch</span>
-    <span>Last updated · Spring 2026</span>
-  </footer>
-
+  </main>
 </div>
 
 </body>
