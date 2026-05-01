@@ -99,14 +99,52 @@
   opacity: 1;
 }
 
-.sidebar nav a.group-label {
+.sidebar nav .group-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 4px;
+  cursor: pointer;
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
   letter-spacing: 0.02em;
   color: var(--ink);
-  margin-top: 4px;
-  text-decoration: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   transition: color 0.2s ease, padding-left 0.25s ease;
+}
+
+.sidebar nav .group-toggle:hover {
+  color: var(--accent);
+  padding-left: 4px;
+}
+
+.sidebar nav .group-toggle .arrow {
+  display: inline-block;
+  font-size: 14px;
+  transition: transform 0.25s ease;
+  color: var(--muted);
+}
+
+.sidebar nav .group-toggle[aria-expanded="true"] .arrow {
+  transform: rotate(90deg);
+}
+
+.sidebar nav .group-children {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, margin-top 0.3s ease;
+  margin-top: 0;
+}
+
+.sidebar nav .group-children.open {
+  max-height: 200px;
+  margin-top: 13px;
 }
 
 .sidebar nav a.group-label:hover {
@@ -425,17 +463,25 @@
 <nav>
   <a href="#about">About</a>
 
-  <a href="#degrees" class="group-label">Education</a>
-  <a href="#degrees" class="sub">Degrees</a>
-  <a href="#certificates" class="sub">Certificates</a>
+  <button type="button" class="group-toggle" aria-expanded="false" data-group="education">
+    Education <span class="arrow">›</span>
+  </button>
+  <div class="group-children" data-group="education">
+    <a href="#degrees" class="sub">Degrees</a>
+    <a href="#certificates" class="sub">Certificates</a>
+  </div>
 
   <a href="#work">Work experience</a>
   <a href="#international">International</a>
   <a href="#languages">Languages</a>
 
-  <a href="#writing" class="group-label">Projects</a>
-  <a href="#writing" class="sub">Writing</a>
-  <a href="#travel" class="sub">Travel Blog</a>
+  <button type="button" class="group-toggle" aria-expanded="false" data-group="projects">
+    Projects <span class="arrow">›</span>
+  </button>
+  <div class="group-children" data-group="projects">
+    <a href="#writing" class="sub">Writing</a>
+    <a href="#travel" class="sub">Travel Blog</a>
+  </div>
 
   <a href="#hobbies">Hobbies</a>
   <a href="#contact">Contact</a>
@@ -854,5 +900,16 @@
   </main>
 </div>
 
+  <script>
+  document.querySelectorAll('.group-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var group = btn.getAttribute('data-group');
+      var children = document.querySelector('.group-children[data-group="' + group + '"]');
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !isOpen);
+      children.classList.toggle('open');
+    });
+  });
+</script>
 </body>
 </html>
