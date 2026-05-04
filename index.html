@@ -23,6 +23,11 @@
 
   html { scroll-behavior: smooth; }
 
+  .entry-list li:last-child .entry-item,
+.travel-list li:last-child .travel-item {
+  border-bottom: none;
+}
+
   body {
     background: var(--bg);
     color: var(--ink);
@@ -240,7 +245,7 @@
   padding-top: 32px;
 }
 
-  /* Banded sections */
+/* Banded sections */
 .band {
   margin: 0 -32px;
   padding: 0 32px;
@@ -250,16 +255,27 @@
   background: var(--bg-alt);
 }
 
+/* Remove all section borders inside bands — we'll add a single one at the band's bottom */
 .band section {
   border-top: none;
 }
 
-/* visible divider where two bands meet */
-.band + .band {
-  border-top: 1px solid var(--rule);
+/* Bottom rule on each band — sits inside the text column width */
+.band::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: var(--rule);
+  max-width: 660px;
+  margin: 0 auto;
 }
 
-/* group-heading at the top of band, no border above */
+/* Last band shouldn't draw a bottom rule */
+.band:last-of-type::after {
+  display: none;
+}
+
+/* Group headings still need their top spacing */
 .band .group-heading {
   border-top: none;
   padding-top: 56px;
