@@ -227,14 +227,14 @@
 
   /* Banded sections */
   .band {
-    margin: 0 -32px;
-    padding: 10px 32px 10px;
-    border-bottom: 1px solid var(--rule);
-  }
+  margin: 0 -32px;
+  padding: 15px 32px 10px;
+  border-bottom: 1px solid var(--rule);
+}
 
-  .band + .band {
-    margin-top: 30px;
-  }
+  .band:first-of-type {
+  padding-top: 5px;
+}
 
   .band:last-of-type {
     border-bottom: none;
