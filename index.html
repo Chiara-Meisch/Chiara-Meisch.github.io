@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8.content" />
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chiara Meisch — Writing & Research</title>
+<title>NAME — Writing & Research</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,22 +11,22 @@
 
 <style>
   :root {
-  --bg: #e8f0f6;
-  --bg-alt: #dde8f1;  
-  --ink: #18253a;
-  --muted: #2c4a6b;
-  --rule: #5a7595;
-  --accent: #1f4180;
-}
+    --bg: #e8f0f6;
+    --bg-alt: #dde8f1;
+    --ink: #18253a;
+    --muted: #2c4a6b;
+    --rule: #5a7595;
+    --accent: #1f4180;
+  }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
 
   .entry-list li:last-child .entry-item,
-.travel-list li:last-child .travel-item {
-  border-bottom: none;
-}
+  .travel-list li:last-child .travel-item {
+    border-bottom: none;
+  }
 
   body {
     background: var(--bg);
@@ -54,9 +54,8 @@
   .content { max-width: 660px; min-width: 0; }
 
   section .group-heading {
-  margin-bottom: 32px;
-}
-
+    margin-bottom: 32px;
+  }
 
   /* Sidebar */
   .sidebar {
@@ -99,69 +98,65 @@
   }
 
   .sidebar nav a.sub {
-  padding-left: 14px;
-  font-size: 12px;
-  color: var(--muted);
-  opacity: 0.85;
-}
+    padding-left: 14px;
+    font-size: 12px;
+    color: var(--muted);
+    opacity: 0.85;
+  }
 
-.sidebar nav a.sub:hover {
-  padding-left: 18px;
-  opacity: 1;
-}
+  .sidebar nav a.sub:hover {
+    padding-left: 18px;
+    opacity: 1;
+  }
 
-.sidebar nav .group-toggle {
-  background: none;
-  border: none;
-  padding: 0;
-  margin-top: 4px;
-  cursor: pointer;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  color: var(--muted);
-  text-align: left;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: color 0.2s ease, padding-left 0.25s ease;
-}
+  .sidebar nav .group-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 4px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease, padding-left 0.25s ease;
+  }
 
-.sidebar nav .group-toggle:hover {
-  color: var(--accent);
-  padding-left: 4px;
-}
+  .sidebar nav .group-toggle:hover {
+    color: var(--accent);
+    padding-left: 4px;
+  }
 
-.sidebar nav .group-toggle .arrow {
-  display: inline-block;
-  font-size: 14px;
-  transition: transform 0.25s ease;
-  color: var(--muted);
-}
+  .sidebar nav .group-toggle .arrow {
+    display: inline-block;
+    font-size: 14px;
+    transition: transform 0.25s ease;
+    color: var(--muted);
+  }
 
-.sidebar nav .group-toggle[aria-expanded="true"] .arrow {
-  transform: rotate(90deg);
-}
+  .sidebar nav .group-toggle[aria-expanded="true"] .arrow {
+    transform: rotate(90deg);
+  }
 
-.sidebar nav .group-children {
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, margin-top 0.3s ease;
-  margin-top: 0;
-}
+  .sidebar nav .group-children {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
+    margin-top: 0;
+  }
 
-.sidebar nav .group-children.open {
-  max-height: 300px;
-  margin-top: 13px;
-}
+  .sidebar nav .group-children.open {
+    max-height: 300px;
+    margin-top: 13px;
+  }
 
-.sidebar nav a.group-label:hover {
-  color: var(--accent);
-  padding-left: 4px;
-}
   /* Hero */
   .hero {
     padding: 0 0 72px;
@@ -180,8 +175,8 @@
   .hero h1 {
     font-family: 'Newsreader', serif;
     font-weight: 400;
-    font-size: clamp(28px, 5.5vw, 28px);
-    line-height: 1.1;
+    font-size: 28px;
+    line-height: 1.2;
     letter-spacing: -0.015em;
     margin-bottom: 28px;
   }
@@ -195,8 +190,6 @@
 
   /* Section base */
   section {
-    padding: 56px 0;
-    border-top: 1px solid var(--rule);
     opacity: 0;
     animation: fadeUp 0.9s ease forwards;
     animation-delay: 0.2s;
@@ -219,72 +212,57 @@
     color: var(--ink);
     margin: 36px 0 18px;
   }
-  
-  .content section:nth-child(even) {
-  background: var(--bg-alt);
-  margin: 0 -32px;
-  padding-left: 32px;
-  padding-right: 32px;
-}
-/* Group dividers in main column */
-.group-heading {
-  font-family: 'Newsreader', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(34px, 4.5vw, 46px);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
-  color: var(--ink);
-  padding: 72px 0 8px;
-  border-top: 1px solid var(--rule);
-  margin-bottom: 0;
-}
 
-.group-heading + section {
-  border-top: none;
-  padding-top: 32px;
-}
+  /* Group dividers in main column */
+  .group-heading {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(34px, 4.5vw, 46px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 0;
+  }
 
-/* Banded sections */
-.band {
-  margin: 0 -32px;
-  padding: 0 32px;
-}
+  /* Banded sections */
+  .band {
+    margin: 0 -32px;
+    padding: 5px 32px;
+    border-bottom: 1px solid var(--rule);
+  }
 
-.band-alt {
-  background: var(--bg-alt);
-}
+  .band + .band {
+    margin-top: 30px;
+  }
 
-/* Remove all section borders inside bands — we'll add a single one at the band's bottom */
-.band section {
-  border-top: none;
-}
+  .band:last-of-type {
+    border-bottom: none;
+  }
 
-/* Bottom rule on each band — sits inside the text column width */
-.band::after {
-  content: "";
-  display: block;
-  height: 1px;
-  background: var(--rule);
-  max-width: 660px;
-  margin: 5px auto 30px;
-}
+  .band-alt {
+    background: var(--bg-alt);
+  }
 
-/* Last band shouldn't draw a bottom rule */
-.band:last-of-type::after {
-  display: none;
-}
+  /* Sections inside a band have no own padding or borders — the band controls the spacing */
+  .band section {
+    padding: 0;
+    border-top: none;
+  }
 
-/* Group headings still need their top spacing */
-.band .group-heading {
-  border-top: none;
-  padding-top: 56px;
-}
+  /* When a band has multiple sub-sections, give them breathing room */
+  .band section + section {
+    margin-top: 48px;
+  }
 
-.band > section:first-child {
-  padding-top: 56px;
-}
-  
+  /* Group heading sits flush at the top of its band */
+  .band .group-heading {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    margin-bottom: 24px;
+  }
+
   /* About */
   .about p {
     font-size: 18px;
@@ -435,10 +413,15 @@
   .contact h2 {
     font-family: 'Newsreader', serif;
     font-weight: 400;
-    font-size: clamp(20px, 4vw, 20px);
     line-height: 1.15;
     letter-spacing: -0.01em;
     margin-bottom: 28px;
+  }
+
+  .contact p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 24px;
   }
 
   .links {
@@ -472,7 +455,6 @@
   /* Footer */
   footer {
     padding: 40px 0 56px;
-    border-top: 1px solid var(--rule);
     margin-top: 24px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
@@ -510,7 +492,6 @@
   @media (max-width: 600px) {
     body { font-size: 17px; }
     .hero { padding-bottom: 44px; }
-    section { padding: 44px 0; }
     .languages dl {
       grid-template-columns: 90px 1fr;
       gap: 10px 18px;
@@ -535,46 +516,46 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="sidebar-name">Chiara Meisch</div>
-<nav>
-  <a href="#about">About</a>
+    <div class="sidebar-name">NAME</div>
+    <nav>
+      <a href="#about">About</a>
 
-  <button type="button" class="group-toggle" aria-expanded="false" data-group="projects" data-target="#projects">
-    Projects <span class="arrow">›</span>
-  </button>
-  <div class="group-children" data-group="projects">
-    <a href="#writing" class="sub">Writing</a>
-      <a href="#thesis" class="sub">Thesis</a>
-    <a href="#travel" class="sub">Travel Blog</a>
-  </div>
+      <button type="button" class="group-toggle" aria-expanded="false" data-group="projects" data-target="#projects">
+        Projects <span class="arrow">›</span>
+      </button>
+      <div class="group-children" data-group="projects">
+        <a href="#writing" class="sub">Writing</a>
+        <a href="#thesis" class="sub">Thesis</a>
+        <a href="#travel" class="sub">Travel Blog</a>
+      </div>
 
-  <button type="button" class="group-toggle" aria-expanded="false" data-group="education" data-target="#education">
-    Education <span class="arrow">›</span>
-  </button>
-  <div class="group-children" data-group="education">
-    <a href="#degrees" class="sub">Degrees</a>
-   <a href="#professional-development" class="sub">Professional Development</a>
-  </div>
+      <button type="button" class="group-toggle" aria-expanded="false" data-group="education" data-target="#education">
+        Education <span class="arrow">›</span>
+      </button>
+      <div class="group-children" data-group="education">
+        <a href="#degrees" class="sub">Degrees</a>
+        <a href="#professional-development" class="sub">Professional Development</a>
+      </div>
 
-  <button type="button" class="group-toggle" aria-expanded="false" data-group="experience" data-target="#experience">
-    Experience <span class="arrow">›</span>
-  </button>
-  <div class="group-children" data-group="experience">
-    <a href="#work" class="sub">Work</a>
-    <a href="#international" class="sub">International</a>
-  </div>
+      <button type="button" class="group-toggle" aria-expanded="false" data-group="experience" data-target="#experience">
+        Experience <span class="arrow">›</span>
+      </button>
+      <div class="group-children" data-group="experience">
+        <a href="#work" class="sub">Work</a>
+        <a href="#international" class="sub">International</a>
+      </div>
 
-  <a href="#languages">Languages</a>
-  <a href="#hobbies">Hobbies</a>
-  <a href="#contact">Contact</a>
-</nav>
+      <a href="#languages">Languages</a>
+      <a href="#hobbies">Hobbies</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </aside>
 
   <!-- MAIN CONTENT -->
   <main class="content">
 
     <!-- HERO -->
-    <section class="hero" style="border-top: none;">
+    <section class="hero">
       <div class="eyebrow">Linguistics · Science communication</div>
       <h1>
         I think and write about how <span class="italic">we make meaning</span> in language, in science and in the stories we tell about both.
@@ -584,457 +565,410 @@
       </p>
     </section>
 
-    <!-- ABOUT -->
-  <div class="band band-alt">
-  <section id="about" class="about">
-      <h2 class="group-heading">About</h2>
-      <p>I like making complex ideas accessible across disciplines, languages and cultures and am especially interested in open science and science communication.  <p> 
-      <p> I think that great research deserves to reach more than just the people who already know where to look. My background in linguistics, social and cultural anthropology 
-        and intercultural collaboration has shaped the way I think about communication and made me fascinated by how humans communicate.</p>
-      <p>I am interested in questions that sit between disciplines such as where linguistics meets AI technology or where the way scientists talk shapes what the public ends up believing.</p>
-    </section>
-    </div>
-
-    <!-- WRITING -->
-    <div class="band"> 
-    <h2 class="group-heading" id="projects">Projects</h2>
-    <section id="writing">
-      <div class="section-label">Selected writing</div>
-      <ul class="entry-list">
-
-       <li>
-  <a href="https://link-to-your-first-article.com" target="_blank" rel="noopener" class="entry-item">
-    <span class="title">
-      [First article title]
-      <span class="meta">[Publication name] · [Article type] · [read time]</span>
-    </span>
-    <span class="year">2025</span>
-  </a>
-</li>
-
-<li>
-  <a href="https://link-to-your-second-article.com" target="_blank" rel="noopener" class="entry-item">
-    <span class="title">
-      [Second article title]
-      <span class="meta">[Publication name] · [Article type] · [read time]</span>
-    </span>
-    <span class="year">2024</span>
-  </a>
-</li>
-</ul>
-   </section>
-
-       <!-- THESIS -->
-    <section id="thesis">
-      <div class="section-label">Thesis</div>
-      <ul class="entry-list">
-
-        <li>
-  <a href="https://osf.io/myproject-id" target="_blank" rel="noopener" class="entry-item">
-    <span class="title">
-      Master Thesis
-      <span class="meta">Open Science Framework · [brief description of the project + R code]</span>
-    </span>
-    <span class="year">2025</span>
-  </a>
-</li>
-
-            <li>
-  <a href="https://osf.io/myproject-id" target="_blank" rel="noopener" class="entry-item">
-    <span class="title">
-      Bachelor Thesis
-      <span class="meta">Open Science Framework · [brief description of the project + R code]</span>
-    </span>
-    <span class="year">2022</span>
-  </a>
-</li>
-
-   </ul>
-    </section>
-
-    <!-- TRAVEL BLOG -->
-    <section id="travel">
-      <div class="section-label">From my travel blog</div>
-      <ul class="travel-list">
-
-        <!--
-          TO ADD A PHOTO: replace the line `<div class="travel-thumb empty"></div>`
-          with `<div class="travel-thumb"><img src="path/to/your-image.jpg" alt="" /></div>`
-          image will be cropped to fit the frame automatically.
-        -->
-
-        <li>
-          <a href="taiwan.html" class="travel-item"> 
-            <div class="travel-thumb empty"></div>
-            <div class="travel-text">
-              <span class="title">A month in Taiwan</span>
-              <span class="meta">Taiwan · March 2025 · 8 min read</span>
-            </div>
-          </a>
-        </li>
-
-          <li>
-          <a href="georgia.html" class="travel-item">
-            <div class="travel-thumb empty"></div>
-            <div class="travel-text">
-              <span class="title">About Georgian hospitality</span>
-              <span class="meta">Georgia · June 2024 · 8 min read</span>
-            </div>
-          </a>
-        </li>
-
-
-        <li>
-          <a href="costa-rica.html" class="travel-item">
-            <div class="travel-thumb empty"></div>
-            <div class="travel-text">
-              <span class="title">What solo travelling taught me</span>
-              <span class="meta">Costa Rica · March 2023 · 14 min read</span>
-            </div>
-          </a>
-        </li>
-
-        <li>
-          <a href="faroe-islands.html" class="travel-item">
-            <div class="travel-thumb empty"></div>
-            <div class="travel-text">
-              <span class="title">Travelling the Faroe Islands</span>
-              <span class="meta">Faroe Islands · June 2022 · 11 min read</span>
-            </div>
-          </a>
-        </li>
-
-        <li>
-         <a href="scotland.html" class="travel-item">
-            <div class="travel-thumb empty"></div>
-            <div class="travel-text">
-              <span class="title">Diary of farm work in Scotland</span>
-              <span class="meta">Scotland · May 2022 · 11 min read</span>
-            </div>
-          </a>
-        </li>
-
-        <li>
-         <a href="china.html" class="travel-item">
-            <div class="travel-thumb empty"></div>
-            <div class="travel-text">
-              <span class="title">Cultural explorations of China</span>
-              <span class="meta">China · March 2018 · 11 min read</span>
-            </div>
-          </a>
-        </li>
-
-      </ul>
-    </section>
-    </div>
-
-    <!-- DEGREES -->
-    <div class="band band-alt">
-    <h2 class="group-heading" id="education">Education</h2>
-    <section id="degrees">
-      <div class="section-label">Degrees</div>
-      <ul class="entry-list">
-        
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              M.Sc. International Experimental and Clinical Linguistics
-              <span class="meta">University of Potsdam (DE) and Lund University (SE)</span>
-            </span>
-            <span class="year">2022 – 2025</span>
-          </div>
-        </li>
-
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              B.Sc. Linguistics
-              <span class="meta">University of Potsdam (DE) and Ulster University (GB) </span>
-            </span>
-            <span class="year">2018 – 2022</span>
-          </div>
-        </li>
-
-         <li>
-          <div class="entry-item">
-            <span class="title">
-             Studies in Social and Cultural Anthropology and French Philology
-              <span class="meta">Freie Universität Berlin (DE) and Université Paul-Valéry Montpellier (FR) </span>
-            </span>
-            <span class="year">2015 – 2028</span>
-          </div>
-        </li>
-        </ul>
-        </section>
-
-        <!-- PROFESSIONAL DEVELOPMENT -->
-    <section id="professional-development">
-      <div class="section-label">Professional Development</div>
-      <ul class="entry-list">
-
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              EU AI Act Essentials
-              <span class="meta">KI Campus</span>
-            </span>
-            <span class="year">2026</span>
-          </div>
-        </li>
-
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              EUTM in a Nutshell
-              <span class="meta">EUIPO Academy Learning Portal</span>
-            </span>
-            <span class="year">2026</span>
-          </div>
-        </li>
-
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              Profitable AI
-              <span class="meta">Hasso Plattner Institute</span>
-            </span>
-            <span class="year">2026</span>
-          </div>
-        </li>
-
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              Research Data Management
-              <span class="meta">Institute for Research Data Management Brandenburg</span>
-            </span>
-            <span class="year">2024</span>
-          </div>
-        </li>
-
-
-      </ul>    
-    </section>
-    </div>
-
-    <!-- WORK EXPERIENCE -->
+    <!-- BAND: ABOUT (light) -->
     <div class="band">
-    <h2 class="group-heading" id="experience">Experience</h2>
-    <section id="work">
-      <div class="section-label">Work experience</div>
-      <ul class="entry-list">
+      <section id="about" class="about">
+        <h2 class="group-heading">About</h2>
+        <p>I like making complex ideas accessible across disciplines, languages and cultures and am especially interested in open science and science communication.</p>
+        <p>I think that great research deserves to reach more than just the people who already know where to look. My background in linguistics, social and cultural anthropology and intercultural collaboration has shaped the way I think about communication and made me fascinated by how humans communicate.</p>
+        <p>I am interested in questions that sit between disciplines such as where linguistics meets AI technology or where the way scientists talk shapes what the public ends up believing.</p>
+      </section>
+    </div>
 
-         <li>
-          <div class="entry-item">
-            <span class="title">
-              Freelance German Content Writer 
-              <span class="meta"LikeLingo (Remote)· [brief description of what you did]</span>
-            </span>
-            <span class="year">since 2026</span>
-          </div>
-        </li>
-
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              Freelance Linguistics Specialist
-              <span class="meta"Cactus Communications (Remote)· [brief description of what you did]</span>
-            </span>
-            <span class="year">since 2025</span>
-          </div>
-        </li>
-        
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              Travel Programme Coordinator Intern
-              <span class="meta">Vision of Scandinavia (DK) · [description ]</span>
-            </span>
-            <span class="year">2025</span>
-          </div>
-        </li>
-
-         <li>
-          <div class="entry-item">
-            <span class="title">
-              Research assistant
-              <span class="meta">University of Potsdam - CRC 1287 (DE)· [brief description of what you did]</span>
-            </span>
-            <span class="year">2021 – 2025</span>
-          </div>
-        </li>
-
-         <li>
-          <div class="entry-item">
-            <span class="title">
-              Internship
-              <span class="meta">University of Potsdam - VLAB (DE)· [brief description of what you did]</span>
-            </span>
-            <span class="year">2021 – 2025</span>
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    <!-- INTERNATIONAL EXPERIENCE -->
-    <section id="international">
-      <div class="section-label">International experience</div>
-      <ul class="entry-list">
-
-      <li>
-          <div class="entry-item">
-            <span class="title">
-              Volunteering for community events
-              <span class="meta">Folkets Kök, Lund (SE)</span>
-            </span>
-            <span class="year">since 2023</span>
-          </div>
-        </li>
-        
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              Erasmus exchange semester
-              <span class="meta">Lund University (SE)</span>
-            </span>
-            <span class="year">2023</span>
-          </div>
-        </li>
-
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              Student Buddy Program - Mentoring of international students
-              <span class="meta">University of Potsdam (DE)</span>
-            </span>
-            <span class="year">2019 - 2023</span>
-          </div>
-        </li>
-
-        <li>
-          <div class="entry-item">
-            <span class="title">
-             International Travels
-              <span class="meta">Asia, Central America, Europe</span>
-            </span>
-            <span class="year">2018 - 2026</span>
-          </div>
-        </li>
-
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              Erasmus exchange semester
-              <span class="meta">Ulster University (GB)</span>
-            </span>
-            <span class="year">2020</span>
-          </div>
-        </li>
-
-        <li>
-          <div class="entry-item">
-            <span class="title">
-              Erasmus exchange semester
-              <span class="meta">Université Paul-Valéry Montpellier (FR)</span>
-            </span>
-            <span class="year">2016 - 2017</span>
-          </div>
-        </li>
-
-      </ul>
-    </section>
-     </div>
-
-
-    <!-- LANGUAGES -->
+    <!-- BAND: PROJECTS (dark) - Writing + Thesis + Travel -->
     <div class="band band-alt">
+      <h2 class="group-heading" id="projects">Projects</h2>
+
+      <section id="writing">
+        <div class="section-label">Selected writing</div>
+        <ul class="entry-list">
+          <li>
+            <a href="https://link-to-your-first-article.com" target="_blank" rel="noopener" class="entry-item">
+              <span class="title">
+                [First article title]
+                <span class="meta">[Publication name] · [Article type] · [read time]</span>
+              </span>
+              <span class="year">2025</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://link-to-your-second-article.com" target="_blank" rel="noopener" class="entry-item">
+              <span class="title">
+                [Second article title]
+                <span class="meta">[Publication name] · [Article type] · [read time]</span>
+              </span>
+              <span class="year">2024</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="thesis">
+        <div class="section-label">Thesis</div>
+        <ul class="entry-list">
+          <li>
+            <a href="https://osf.io/myproject-id" target="_blank" rel="noopener" class="entry-item">
+              <span class="title">
+                Master Thesis
+                <span class="meta">Open Science Framework · [brief description of the project + R code]</span>
+              </span>
+              <span class="year">2025</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://osf.io/myproject-id" target="_blank" rel="noopener" class="entry-item">
+              <span class="title">
+                Bachelor Thesis
+                <span class="meta">Open Science Framework · [brief description of the project + R code]</span>
+              </span>
+              <span class="year">2022</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="travel">
+        <div class="section-label">From my travel blog</div>
+        <ul class="travel-list">
+          <li>
+            <a href="taiwan.html" class="travel-item">
+              <div class="travel-thumb empty"></div>
+              <div class="travel-text">
+                <span class="title">A month in Taiwan</span>
+                <span class="meta">Taiwan · March 2025 · 8 min read</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="georgia.html" class="travel-item">
+              <div class="travel-thumb empty"></div>
+              <div class="travel-text">
+                <span class="title">About Georgian hospitality</span>
+                <span class="meta">Georgia · June 2024 · 8 min read</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="costa-rica.html" class="travel-item">
+              <div class="travel-thumb empty"></div>
+              <div class="travel-text">
+                <span class="title">What solo travelling taught me</span>
+                <span class="meta">Costa Rica · March 2023 · 14 min read</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="faroe-islands.html" class="travel-item">
+              <div class="travel-thumb empty"></div>
+              <div class="travel-text">
+                <span class="title">Travelling the Faroe Islands</span>
+                <span class="meta">Faroe Islands · June 2022 · 11 min read</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="scotland.html" class="travel-item">
+              <div class="travel-thumb empty"></div>
+              <div class="travel-text">
+                <span class="title">Diary of farm work in Scotland</span>
+                <span class="meta">Scotland · May 2022 · 11 min read</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="china.html" class="travel-item">
+              <div class="travel-thumb empty"></div>
+              <div class="travel-text">
+                <span class="title">Cultural explorations of China</span>
+                <span class="meta">China · March 2018 · 11 min read</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- BAND: EDUCATION (light) - Degrees + Professional Development -->
+    <div class="band">
+      <h2 class="group-heading" id="education">Education</h2>
+
+      <section id="degrees">
+        <div class="section-label">Degrees</div>
+        <ul class="entry-list">
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                M.Sc. International Experimental and Clinical Linguistics
+                <span class="meta">University of Potsdam (DE) and Lund University (SE)</span>
+              </span>
+              <span class="year">2022 – 2025</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                B.Sc. Linguistics
+                <span class="meta">University of Potsdam (DE) and Ulster University (GB)</span>
+              </span>
+              <span class="year">2018 – 2022</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Studies in Social and Cultural Anthropology and French Philology
+                <span class="meta">Freie Universität Berlin (DE) and Université Paul-Valéry Montpellier (FR)</span>
+              </span>
+              <span class="year">2015 – 2018</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="professional-development">
+        <div class="section-label">Professional Development</div>
+        <ul class="entry-list">
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                EU AI Act Essentials
+                <span class="meta">KI Campus</span>
+              </span>
+              <span class="year">2026</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                EUTM in a Nutshell
+                <span class="meta">EUIPO Academy Learning Portal</span>
+              </span>
+              <span class="year">2026</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Profitable AI
+                <span class="meta">Hasso Plattner Institute</span>
+              </span>
+              <span class="year">2026</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Research Data Management
+                <span class="meta">Institute for Research Data Management Brandenburg</span>
+              </span>
+              <span class="year">2024</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- BAND: EXPERIENCE (dark) - Work + International -->
+    <div class="band band-alt">
+      <h2 class="group-heading" id="experience">Experience</h2>
+
+      <section id="work">
+        <div class="section-label">Work experience</div>
+        <ul class="entry-list">
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Freelance German Content Writer
+                <span class="meta">LikeLingo (Remote) · [brief description of what you did]</span>
+              </span>
+              <span class="year">since 2026</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Freelance Linguistics Specialist
+                <span class="meta">Cactus Communications (Remote) · [brief description of what you did]</span>
+              </span>
+              <span class="year">since 2025</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Travel Programme Coordinator Intern
+                <span class="meta">Vision of Scandinavia (DK) · [description]</span>
+              </span>
+              <span class="year">2025</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Research assistant
+                <span class="meta">University of Potsdam - CRC 1287 (DE) · [brief description of what you did]</span>
+              </span>
+              <span class="year">2021 – 2025</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Internship
+                <span class="meta">University of Potsdam - VLAB (DE) · [brief description of what you did]</span>
+              </span>
+              <span class="year">2021 – 2025</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="international">
+        <div class="section-label">International experience</div>
+        <ul class="entry-list">
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Volunteering for community events
+                <span class="meta">Folkets Kök, Lund (SE)</span>
+              </span>
+              <span class="year">since 2023</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Erasmus exchange semester
+                <span class="meta">Lund University (SE)</span>
+              </span>
+              <span class="year">2023</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Student Buddy Program — Mentoring of international students
+                <span class="meta">University of Potsdam (DE)</span>
+              </span>
+              <span class="year">2019 – 2023</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                International Travels
+                <span class="meta">Asia, Central America, Europe</span>
+              </span>
+              <span class="year">2018 – 2026</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Erasmus exchange semester
+                <span class="meta">Ulster University (GB)</span>
+              </span>
+              <span class="year">2020</span>
+            </div>
+          </li>
+          <li>
+            <div class="entry-item">
+              <span class="title">
+                Erasmus exchange semester
+                <span class="meta">Université Paul-Valéry Montpellier (FR)</span>
+              </span>
+              <span class="year">2016 – 2017</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- BAND: LANGUAGES (light) -->
+    <div class="band">
       <section id="languages" class="languages">
-      <h2 class="group-heading">Languages</h2>
-      <dl>
-        <dt>German</dt>
-        <dd>Native</dd>
+        <h2 class="group-heading">Languages</h2>
+        <dl>
+          <dt>German</dt>
+          <dd>Native</dd>
 
-        <dt>English</dt>
-        <dd>C2</dd>
+          <dt>English</dt>
+          <dd>C2</dd>
 
-        <dt>French</dt>
-        <dd>C1</dd>
+          <dt>French</dt>
+          <dd>C1</dd>
 
-        <dt>Spanish</dt>
-        <dd>B1</dd>
+          <dt>Spanish</dt>
+          <dd>B1</dd>
 
-        <dt>Swedish</dt>
-        <dd>A2</dd>
+          <dt>Swedish</dt>
+          <dd>A2</dd>
 
-        <dt>Italian</dt>
-        <dd>A1</dd>
+          <dt>Italian</dt>
+          <dd>A1</dd>
 
-        <dt>Mandarin</dt>
-        <dd>A1</dd>
-      </dl>
-    </section>
+          <dt>Mandarin</dt>
+          <dd>A1</dd>
+        </dl>
+      </section>
     </div>
 
-    <!-- HOBBIES -->
-   <div class="band">
-    <section id="hobbies" class="hobbies">
-     <h2 class="group-heading">Hobbies</h2>
-      <p>Outside of writing, I spend my time bouldering and woodworking. </p>
-      <p>Cooking has been a long-time hobby of mine and I even designed a recipe book of over 100 recipes for private use. Below, you can find two of my all-time favourites. </p>
-
-      <div class="subsection-label">Favourite recipes</div>
-      <ul class="entry-list">
-
-        <li>
-          <a href="#" class="entry-item">
-            <span class="title">
-              [Recipe name #1]
-              <span class="meta">[Cuisine or category] · [a short note about it]</span>
-            </span>
-            <span class="year">view →</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="#" class="entry-item">
-            <span class="title">
-              [Recipe name #2]
-              <span class="meta">[Cuisine or category] · [a short note about it]</span>
-            </span>
-            <span class="year">view →</span>
-          </a>
-        </li>
-
-      </ul>
-    </section>
-    </div>
-
-    <!-- CONTACT -->
+    <!-- BAND: HOBBIES (dark) -->
     <div class="band band-alt">
-    <section id="contact" class="contact">
-      <h2 class="group-heading">Get in touch</h2>
- I am currently exploring new roles in <span class="italic">linguistics, science communication and language technology</span>. I am always happy to talk about collaborations and ideas in progress.
-      </h2>
-      <div class="links">
-        <a href="https://www.linkedin.com/in/chiara-meisch" target="_blank" rel="noopener" class="with-icon">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
-          LinkedIn
-        </a>
-      </div>
-    </section>
+      <section id="hobbies" class="hobbies">
+        <h2 class="group-heading">Hobbies</h2>
+        <p>Outside of writing, I spend my time bouldering and woodworking.</p>
+        <p>Cooking has been a long-time hobby of mine and I even designed a recipe book of over 100 recipes for private use. Below, you can find two of my all-time favourites.</p>
+
+        <div class="subsection-label">Favourite recipes</div>
+        <ul class="entry-list">
+          <li>
+            <a href="#" class="entry-item">
+              <span class="title">
+                [Recipe name #1]
+                <span class="meta">[Cuisine or category] · [a short note about it]</span>
+              </span>
+              <span class="year">view →</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="entry-item">
+              <span class="title">
+                [Recipe name #2]
+                <span class="meta">[Cuisine or category] · [a short note about it]</span>
+              </span>
+              <span class="year">view →</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- BAND: CONTACT (light) -->
+    <div class="band">
+      <section id="contact" class="contact">
+        <h2 class="group-heading">Get in touch</h2>
+        <p>I am currently exploring new roles in <span class="italic">linguistics, science communication and language technology</span>. I am always happy to talk about collaborations and ideas in progress.</p>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/NAME" target="_blank" rel="noopener" class="with-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+      </section>
     </div>
 
     <footer>
-      <span>© 2026 Chiara Meisch</span>
+      <span>© 2026 NAME</span>
       <span>Last updated · Spring 2026</span>
     </footer>
 
   </main>
 </div>
 
- <script>
+<script>
   document.querySelectorAll('.group-toggle').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var group = btn.getAttribute('data-group');
