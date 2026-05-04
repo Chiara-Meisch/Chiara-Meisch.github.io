@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Travelling in Faroe Islands — Chiara Meisch</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #e8f0f6;
+    --ink: #18253a;
+    --muted: #2c4a6b;
+    --rule: #5a7595;
+    --accent: #1f4180;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .italic { font-style: italic; color: var(--accent); }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 32px 80px;
+  }
+
+  /* Back link */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 56px;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  .back-link:hover .arrow {
+    transform: translateX(-3px);
+  }
+
+  .back-link .arrow {
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+
+  /* Article header */
+  .article-header {
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+  }
+
+  .article-header .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .article-header h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+
+  .article-header .subtitle {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--muted);
+    max-width: 580px;
+  }
+
+  /* Hero image */
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    margin-bottom: 56px;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.1s;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-image.empty::after {
+    content: "add hero photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Article body */
+  .article-body {
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  .article-body p {
+    margin-bottom: 22px;
+    font-size: 19px;
+    line-height: 1.75;
+  }
+
+  .article-body p.lede::first-letter {
+    font-family: 'Newsreader', serif;
+    font-size: 56px;
+    line-height: 0.85;
+    float: left;
+    padding: 6px 10px 0 0;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .article-body h2 {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.2;
+    margin: 48px 0 18px;
+    color: var(--ink);
+  }
+
+  .article-body h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 36px 0 14px;
+}
+
+  .article-body blockquote {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--muted);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 36px 0;
+  }
+
+  .article-body figure {
+    margin: 48px 0;
+  }
+
+  .article-body figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: var(--rule);
+  }
+
+  .article-body figure figcaption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Image placeholder for inline figures */
+  .image-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+    position: relative;
+  }
+
+  .image-placeholder::after {
+    content: "add photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Footer / signature */
+  .article-footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.02em;
+  }
+
+  /* Animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .container { padding: 24px 24px 56px; }
+    .article-body p { font-size: 17px; }
+    .article-body p.lede::first-letter { font-size: 44px; }
+    .article-body h2 { font-size: 24px; margin: 36px 0 14px; }
+    .article-body blockquote { font-size: 19px; padding-left: 18px; }
+    .article-footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Back link to home -->
+  <a href="index.html" class="back-link">
+    <span class="arrow">←</span> Back to home
+  </a>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="meta">Faroes · May 2022 </div>
+    <h1>Travelling the Faroe Islands</h1>
+    <p class="subtitle">
+      Two beautiful weeks of wind, sheep and waterfalls. Notes from a country that officially belongs to Denmark on paper and very much to itself in practice.
+    </p>
+  </header>
+
+  <!-- HERO IMAGE -->
+    <div class="hero-image"><img src="feed-sheep.jpg" alt="Feeding sheep as part of the morning routine" /></div>
+
+  <!-- ARTICLE BODY -->
+  <article class="article-body">
+
+    <p class="lede">
+    There is a joke among Faroese that the Faroe Islands are the only country in the world where light rain counts as good weather. 
+After two weeks there, I can confirm that it is not really a joke.
+
+    <p>
+     The Faroes are eighteen islands in the North Atlantic, somewhere between Iceland and Scotland, with fifty thousand inhabitants and roughly twice as many sheep. 
+The name itself comes from Old Norse <em>Færeyjar</em> which translates to <em>Sheep Islands</em>. That is exactly what they are. 
+The Faroes have twice as many sheep as people and sheep stand on the cliffs, by the road, in construction sites and on the roofs of houses. 
+Yes, actual roofs because many Faroese houses have grass roofs and instead of buying a lawnmower, you put a sheep up there. Maintenance, I was told, is minimal.
+    </p>
+
+    <p>
+      <h2>Free buses, costly cucumbers</h2>
+    I landed at Vágar in heavy rain and discovered within ten minutes that EU roaming does not apply here. The Faroes belong to Denmark but govern themselves and 
+EU law ends where Faroese self-determination begins. Suddenly, I could not Google anything and could not check trail maps or bus timetables. 
+From then on, every hike had to be planned in advance, with notes on paper. </p>
+      
+    <p>Tórshavn, the capital, is one of the smallest in the world. It consists of coloured wooden houses along the harbour, a tiny fortress and a peninsula called <em>Tinganes</em> 
+where the Faroese parliament has met since the ninth century. The town feels like a well-organised village. Within the city limits, all buses are free, 
+which I used liberally even when it meant accidentally riding out of Tórshavn entirely and ending up at the foot of a fjord, 
+with waterfalls running straight off the mountainsides into the sea.  </p>
+
+<p>
+By day three I had also discovered that grocery prices on the Faroes are an experience by themselves. A small bag of pasta costs three euros and a cucumber four euros. 
+Overall the cost of living is roughly three times as high from what I know from Germany and fresh produce is even more expensive. 
+The Faroes are about twenty percent more expensive than mainland Denmark, which is itself one of the most expensive countries in Europe. 
+My menu narrowed accordingly and pasta with tomato sauce became a constant, with, of course, an occasional luxury splurge on Faroese specialities. </p>
+
+    <h2> Language, weather, and what not to mention </h2>
+    
+    <p>  Faroese sounds like nothing I had heard before. It descends from Old Norse, so it is distantly related to Icelandic and Norwegian, 
+but its grammar was later shaped by Danish which gives it an odd in-between status that makes the spoken language softer and more melodic than I had expected. 
+I could half-decipher written Faroese in the supermarket, because many words follow Germanic roots. Spoken, I understood essentially nothing.  </p>
+  
+    <p>  A few words stuck with me anyway. <em>Takk</em> for thank you, <em> Virðing</em>  for respect. The word appeared on all hiking signs across the islands 
+and asked visitors to treat the wildlife and landscape accordingly. 
+<em>Fjall<em>  for mountain and <em> Fossur</em>  for waterfall, which on the Faroes is a high-frequency word.</p>
+
+      <p> One cultural footnote I will not forget is that Denmark is absolutely off-limits as a small-talk topic. 
+The Faroese govern themselves, have their own language, their own flag, their own parliament and the relationship with Copenhagen is complicated. 
+Anyone wanting to make conversation with a Faroese person should talk about the weather (always works), the sheep (very effective) or 
+the islands themselves (best of all). About Denmark, if at all, only carefully. </p> 
+
+<figure>
+        <img src="planting.jpg" alt="Description of photo" />
+  <figcaption>Being supervised during tree planting</figcaption>
+      </figure>
+    <p>
+
+      <h2>Hiking in eighty-kilometre winds</h2>
+      The Faroes are one of the windiest countries in Europe and it shows. I did hikes where the gusts pushed me over more than once and on one cliff I had to stay 
+ten metres back from the edge, because the wind shifted so unpredictably that any closer would have been dangerous. 
+Waterfalls that normally fall downward sometimes dissolve in midair on the Faroes and the wind turns them into fine mist. 
+Some even blow back upward. It looks absurd, but it actually happens. </p>
+
+
+      <p>Even so, every hike was worth its weather. The climb up Villingadalsfjall, the third-highest mountain in the Faroes at 841 metres, 
+was a steep slippery slope but with a spectacular view at the end. I could see all surrounding islands, the sea and on the cliff opposite, a village that
+clung to the mountainside like a model. On another hike, from Saksun to Tjørnuvík, I walked up through the fog into an almost surreal clarity. 
+The clouds were below me, the sun above and I looked  over cliffs that looked like they belonged in a fairytale. </p>
+
+<p> A trail on the island of Kalsoy led to a lighthouse and, what I had not known in advance, to James Bond's grave. The headstone is there because the final scene 
+of <em>No Time To Die </em> was filmed on Kalsoy. Tourists now make a small pilgrimage to a fictional grave that looks completely at home where it stands. </p>
+
+<h2>A roundabout under the sea</h2>
+ <p>
+One of my favourite Faroese details is that the islands of Streymoy and Eysturoy are connected by an 11-kilometre underwater tunnel that descends 187 metres below sea level 
+at its deepest point. In the middle of this tunnel sits the world's first and so far only underwater roundabout. It opened in December 2020. </p>
+  
+  <p> And not just that because the roundabout was turned into an artwork. In its centre stands a colourful lit pillar that, as you drive past, 
+creates the impression of a jellyfish and hence its name, the Jellyfish Roundabout. 
+Around the pillar, dancing human silhouettes by the local artist Tróndur Patursson show the shape of a traditional Faroese chain dance. 
+I drove through it three times in one day with the bus, simply because it was raining so heavily outside and this was one of the few sights indoors.   </p>
+
+   <h2> Sheep with cameras </h2>
+ <p>
+On a roof in Tórshavn I once saw a sheep watching the whole neighbourhood with the air of someone who was hired to do that. In a way, it was. 
+In 2016 the Faroes launched a project called <em>Sheepview360</em> which included sheep fitted with small cameras on their backs because Google had decided 
+the islands were too small to send Street View cars. The result was Google Street View, filmed from sheep level. 
+Google eventually did send cars but the original footage still exists and is as charming as it sounds.  </p>
+
+<p> Faroese sheep also look different from their Scottish cousins. They are shaggier with denser wool and almost always multi-coloured. 
+There are several distinct breeds, each with its own name and at one bus stop I found a poster cataloguing them like Pokémon cards. </p>
+
+
+    <!-- SHEEP PHOTO -->
+
+      <figure>
+        <img src="callanish-stones.jpg" alt="Description of photo" />
+        <figcaption>Callanish stones on the Isle of Lewis</figcaption>
+      </figure>
+
+
+    <h2>Puffins on Mykines</h2>
+
+<p>
+The day I would most like to do over again was the trip to Mykines. The westernmost island of the Faroes is only reachable by ferry or helicopter and 
+the ferry only runs when the weather and the swell agree. Two of my three planned day trips there were cancelled. On the third, it ran.    
+</p>
+
+<p> 
+Mykines is famous for its puffin colonies. Around 550,000 breeding pairs live there during the season and it is the second-largest bird population in the Faroes. 
+I climbed a long staircase up from the harbour and suddenly stood inside a flock of puffins. 
+They were everywhere, not just at the cliff edge but also inside their nesting burrows, in the sun and in the air. You stood still and the birds flew over your shoulders.
+</p>
+
+<p>
+They are surprisingly loud in flight, about as loud as pigeons, but they can do something pigeons definitely cannot. They dive up to 180 metres deep. 
+What I found most interesting was learning that puffins lay only one egg per year and can live up to sixty years. 
+The birds I watched that day might have been older than I am. They were brooding on those exact cliffs before I was born.
+</p>
+
+<p>
+The ferry back was its own small adventure. The waves were so strong that the boat half-vanished between waves and I clung to the railing for the whole crossing. 
+From one stretch of cliff I caught a brief glimpse of seals swimming. 
+</p>
+
+ <h2>My final impression</h2>
+<p>
+What stays with me is the feeling of a place that does not let itself be hurried. The Faroese live with the weather, not against it. 
+If the ferry is not running, it is not running. If the wind is too strong, you stay inside and drink tea. Nobody apologises for the weather and it is simply part of being there.
+</p>
+
+<p>
+The Faroes do not try to charm anyone. They are not arranged for visitors and somehow there is a relief in that. In being somewhere that does not need you to enjoy it 
+but the strange thing is, you do anyway. They are among the most beautiful places I have ever been to and the people who live there are among the kindest I have met. 
+
+</p>
+  </article>
+
+  <!-- ARTICLE FOOTER -->
+  <footer class="article-footer">
+    <span>Chiara Meisch · 2022</span>
+    <span><a href="index.html" style="color: inherit;">← Home</a></span>
+  </footer>
+
+</div>
+
+</body>
+</html>
