@@ -11,13 +11,13 @@
 
 <style>
   :root {
-    --bg: #e8f0f6;
-    --bg-alt: #dde8f1;
-    --ink: #18253a;
-    --muted: #2c4a6b;
-    --rule: #5a7595;
-    --accent: #1f4180;
-  }
+  --bg: #e8f0f6;
+  --bg-alt: #dde8f1;  
+  --ink: #18253a;
+  --muted: #2c4a6b;
+  --rule: #5a7595;
+  --accent: #1f4180;
+}
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -239,6 +239,35 @@
   border-top: none;
   padding-top: 32px;
 }
+
+  /* Banded sections */
+.band {
+  margin: 0 -32px;
+  padding: 0 32px;
+}
+
+.band:nth-of-type(even) {
+  background: var(--bg-alt);
+}
+
+.band section {
+  border-top: none;
+}
+
+/* visible divider where two bands meet */
+.band + .band {
+  border-top: 1px solid var(--rule);
+}
+
+/* group-heading at the top of band, no border above */
+.band .group-heading {
+  border-top: none;
+  padding-top: 56px;
+}
+
+.band > section:first-child {
+  padding-top: 56px;
+}
   
   /* About */
   .about p {
@@ -249,7 +278,7 @@
 
   .about p:last-child { margin-bottom: 0; }
 
-  /* Generic entry list (used for Writing, Degrees, Work, International, Professional Development, Recipes) */
+  /* Entry list (used for Writing, Degrees, Work, International, Professional Development, Recipes) */
   .entry-list { list-style: none; }
 
   .entry-item {
@@ -540,13 +569,15 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="about">
+  <div class="band">
+  <section id="about" class="about">
       <h2 class="group-heading">About</h2>
       <p>I like making complex ideas accessible across disciplines, languages and cultures and am especially interested in open science and science communication.  <p> 
       <p> I think that great research deserves to reach more than just the people who already know where to look. My background in linguistics, social and cultural anthropology 
         and intercultural collaboration has shaped the way I think about communication and made me fascinated by how humans communicate.</p>
       <p>I am interested in questions that sit between disciplines such as where linguistics meets AI technology or where the way scientists talk shapes what the public ends up believing.</p>
     </section>
+    </div>
 
     <!-- WRITING -->
     <h2 class="group-heading" id="projects">Projects</h2>
@@ -680,6 +711,7 @@
     </section>
 
     <!-- DEGREES -->
+    <div class="band">
     <h2 class="group-heading" id="education">Education</h2>
     <section id="degrees">
       <div class="section-label">Degrees</div>
@@ -763,8 +795,10 @@
 
       </ul>    
     </section>
+    </div>
 
     <!-- WORK EXPERIENCE -->
+    <div class="band">
     <h2 class="group-heading" id="experience">Experience</h2>
     <section id="work">
       <div class="section-label">Work experience</div>
@@ -892,10 +926,12 @@
 
       </ul>
     </section>
+     </div>
 
 
     <!-- LANGUAGES -->
-    <section id="languages" class="languages">
+    <div class="band">
+      <section id="languages" class="languages">
       <h2 class="group-heading">Languages</h2>
       <dl>
         <dt>German</dt>
@@ -920,8 +956,10 @@
         <dd>A1</dd>
       </dl>
     </section>
+    <div>
 
     <!-- HOBBIES -->
+   <div class="band">
     <section id="hobbies" class="hobbies">
      <h2 class="group-heading">Hobbies</h2>
       <p>Outside of writing, I spend my time bouldering and woodworking. <p>
@@ -952,8 +990,10 @@
 
       </ul>
     </section>
+    <div>
 
     <!-- CONTACT -->
+    <div class="band">
     <section id="contact" class="contact">
       <h2 class="group-heading">Get in touch</h2>
  I am currently exploring new roles in <span class="italic">linguistics, science communication and language technology</span>. I am always happy to talk about collaborations and ideas in progress.
@@ -967,6 +1007,7 @@
         </a>
       </div>
     </section>
+    <div>
 
     <footer>
       <span>© 2026 Chiara Meisch</span>
