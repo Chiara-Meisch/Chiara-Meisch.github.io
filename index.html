@@ -12,6 +12,7 @@
 <style>
   :root {
     --bg: #e8f0f6;
+    --bg-alt: #dde8f1;
     --ink: #18253a;
     --muted: #2c4a6b;
     --rule: #5a7595;
@@ -50,6 +51,7 @@
   section .group-heading {
   margin-bottom: 32px;
 }
+
 
   /* Sidebar */
   .sidebar {
@@ -212,6 +214,13 @@
     color: var(--ink);
     margin: 36px 0 18px;
   }
+  
+  .content section:nth-child(even) {
+  background: var(--bg-alt);
+  margin: 0 -32px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
 /* Group dividers in main column */
 .group-heading {
   font-family: 'Newsreader', serif;
@@ -947,7 +956,6 @@
     <!-- CONTACT -->
     <section id="contact" class="contact">
       <h2 class="group-heading">Get in touch</h2>
-      <h2>
  I am currently exploring new roles in <span class="italic">linguistics, science communication and language technology</span>. I am always happy to talk about collaborations and ideas in progress.
       </h2>
       <div class="links">
