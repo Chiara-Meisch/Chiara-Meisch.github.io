@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tea and Temples in Taiwan — Chiara Meisch</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #e8f0f6;
+    --ink: #18253a;
+    --muted: #2c4a6b;
+    --rule: #5a7595;
+    --accent: #1f4180;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .italic { font-style: italic; color: var(--accent); }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 32px 80px;
+  }
+
+  /* Back link */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 56px;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  .back-link:hover .arrow {
+    transform: translateX(-3px);
+  }
+
+  .back-link .arrow {
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+
+  /* Article header */
+  .article-header {
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+  }
+
+  .article-header .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .article-header h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+
+  .article-header .subtitle {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--muted);
+    max-width: 580px;
+  }
+
+  /* Hero image */
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    margin-bottom: 56px;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.1s;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-image.empty::after {
+    content: "add hero photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Article body */
+  .article-body {
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  .article-body p {
+    margin-bottom: 22px;
+    font-size: 19px;
+    line-height: 1.75;
+  }
+
+  .article-body p.lede::first-letter {
+    font-family: 'Newsreader', serif;
+    font-size: 56px;
+    line-height: 0.85;
+    float: left;
+    padding: 6px 10px 0 0;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .article-body h2 {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.2;
+    margin: 48px 0 18px;
+    color: var(--ink);
+  }
+
+  .article-body h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 36px 0 14px;
+}
+
+  .article-body blockquote {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--muted);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 36px 0;
+  }
+
+  .article-body figure {
+    margin: 48px 0;
+  }
+
+  .article-body figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: var(--rule);
+  }
+
+  .article-body figure figcaption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Image placeholder for inline figures */
+  .image-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+    position: relative;
+  }
+
+  .image-placeholder::after {
+    content: "add photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Footer / signature */
+  .article-footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.02em;
+  }
+
+  /* Animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .container { padding: 24px 24px 56px; }
+    .article-body p { font-size: 17px; }
+    .article-body p.lede::first-letter { font-size: 44px; }
+    .article-body h2 { font-size: 24px; margin: 36px 0 14px; }
+    .article-body blockquote { font-size: 19px; padding-left: 18px; }
+    .article-footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Back link to home -->
+  <a href="index.html" class="back-link">
+    <span class="arrow">←</span> Back to home
+  </a>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="meta">Taiwan · March 2025 </div>
+    <h1>Tea and Temples in Taiwan</h1>
+    <p class="subtitle">
+      Five weeks of temples, tea and surprisingly varied landscapes on a small island.  
+    </p>
+  </header>
+
+  <!-- HERO IMAGE -->
+    <div class="hero-image"><img src="cliff.jpg" alt="Traelnipa hike" /></div>
+
+  <!-- ARTICLE BODY -->
+  <article class="article-body">
+
+    <p class="lede">
+    I spent four weeks crossing Taiwan from Kaohsiung in the south up to Taipei in the north and along the east and west coast with detours to islands, 
+      several mountain villages and far too many tea shops (if there is such a thing). 
+
+    <p>
+     It is a fascinating experience when you realise that you have been pointing at random sequences of characters on a handwritten menu for four weeks now and against all odds, 
+      have eaten reasonably well the entire time.  For a foreigner that speaks only the most basic Mandarin, travelling in Taiwan is a constant experience of figuring things out 
+      along the way.  Sometimes you do and sometimes you end up with fish powder in your breakfast wrap at six in the morning. 
+    </p>
+
+    <p>
+      <h2>A linguist’s paradise</h2>
+    The first thing you notice on a Taiwanese train is that the announcements happen four times. Mandarin first, then Taiwanese Hokkien, then Hakka, then English 
+      and that at every station. By the third stop, I tried to really listen to it to pick up the difference between those languages. 
+      What I realised the quickest was the substantial length difference for the same announcements with the English one usually being the longest.  </p>
+      
+    <p>In the regions where the indigenous peoples of Taiwan still live, a fifth language gets added to all this. 
+      There are around sixteen recognised indigenous languages on the island, most of them descendants of the Austronesian family which is the same family that 
+      includes Indonesian, Tagalog, Malagasy, and Māori. Taiwan is widely thought to be the original home of Austronesian, the point from which the language family spread 
+      across the Pacific and Indian Oceans over thousands of years. Standing at a small train station on the east coast, hearing an announcement in a language related 
+      to one spoken in Madagascar, is a very beautiful experience.  </p>
+
+<p>
+Of those sixteen languages, around ten are already extinct and several more are spoken only by a handful of elders. The rest are under pressure from Mandarin, 
+  which became the official language in the mid-twentieth century and has since absorbed enormous amounts of daily life. 
+  The signage at small stations often still carries the local Indigenous name, in Latin letters, beside the Chinese characters.  </p>
+
+<p>
+  What makes reading Taiwan so disorientating, at least at first, is that the script is Traditional Chinese but the older, more elaborate version of the writing system. 
+  It is kept alive on the island while the mainland switched to the simplified version in the twentieth century. A street sign in Taipei has more strokes per character than 
+  the same word would have in Beijing. Somehow, the handwritten menus, like the kind you see at every roadside stall, were artful to me, an outsider that 
+  could not read the menu. An older women explained to me while I was drinking her soup that every owner has their own brushwork and their own shorthand 
+  which they are very proud of. For me, pointing at a sequence of characters to choose my meal of the day became, after a while, a kind of aesthetic gamble. 
+  Sometimes the pretty calligraphy of a certain dish was the only reason why I chose it. After my four weeks there, I was very happy to be able to at least decipher 
+  the characters for <em> rice </em>, <em> noodles</em> and some vegetables.</p>
+
+  <p>I knew, when I planned this trip to Taiwan, that I was going to be looking for tea. Ever since my trip to China, I have been thinking about the tea culture that I 
+    experienced there and I was very excited to see if Taiwan could compare to this. </p>
+
+    <!-- PHOTO -->
+<figure>
+        <img src="waterfall.jpg" alt="Handwritten menu" />
+        <figcaption>Mulafossur in Gásadalur </figcaption>
+      </figure>
+
+    <h2> Taiwan’s Tea </h2>
+    
+    <p>  Taiwan grows some of the most distinctive teas in the world and of course I wanted to try them all.
+Lugu is a small town in the central mountains of Taiwan and it is surrounded almost entirely by tea fields. The roads are narrow, the shops are open only a few hours each day 
+      and nobody is in a hurry. I stayed there for four days specifically to drink tea and on the second afternoon I walked into a small shop where the owner 
+      was tending a row of bonsai trees on the pavement. He looked up, saw me hesitating and asked the only question that I understood: <em>”茶?”</em> (Chá?).
+ </p>
+  
+    <p>  He called his son, who spoke some English and the three of us had a long conversation across a table of thimble-sized cups while two kettles rotated through 
+      different temperatures. He brewed me a high-mountain Oolong which has to be grown above 2000 metres to qualify as such. 
+      The first infusion was bright and tasted faintly grassy, the second was softer, rounder and the third tasted almost sweet. </p>
+
+      <p> Oolong is defined by its degree of oxidation which is somewhere between green tea (almost none) and black tea (essentially complete). Within that range, every 
+        percentage point changes the flavour. A lightly oxidised Oolong tastes floral, almost like a green tea with more body. 
+        A heavily oxidised Oolong tastes warm and roasted, edging towards a black tea but never quite getting there. This means that the same plant, 
+        the same field and the same picker just with a different number of hours spent for the cell walls of the leaf to break down in air and you have produced 
+        something else. </p> 
+    <p>There is the famous high-mountain Oolongs grows above 2000 metres where the cloud cover slows the leaves down, Oriental Beauty that has a honeyed flavour that comes 
+      from leafhoppers piercing the buds and triggering the plant's defence chemistry, the red Oolong invented in Luye in 2008 and the Pouchong from the misty hills of Pinglin.
+      Each region has its own micro-tradition and its own preferred fermentation curve as well as its own arguments about which water temperature ruins everything.</p>
+
+     <p>What Lugu and Luye (of course I had to try the famous Red Oolong) gave me was an extensive vocabulary when it comes to tea. I now know what I am tasting for. 
+       I know the difference between a thirty-percent oxidation and a sixty. I know that <em>high-mountain </em> matters because the cold slows the leaf down and 
+       concentrates the oils. I brought home bags over bags of different teas and a traditional clay pot for brewing them. 
+       The pot is now on a shelf in my kitchen and in daily use. The tea, unfortunately, is mostly gone.</p>
+
+    <!-- PHOTO -->
+<figure>
+        <img src="waterfall.jpg" alt="Tea shop set up" />
+        <figcaption>Mulafossur in Gásadalur </figcaption>
+      </figure>
+
+      <h2>Pinglin and it’s tea museum</h2>
+      Later in the trip, I spent an afternoon at the Pinglin Tea Museum, which is among the largest tea museums in the world which to me is a slightly silly distinction, 
+    given how few there are, but the museum itself is very detailed.</p>
+
+      <p>The exhibition walks you through the history of tea-drinking in China, which spread across the country only during the Tang dynasty (618–907 CE). 
+        Before that, tea was a southern habit, confined to the regions below the Yangtze where the plant grew. With the Tang dynasty came the first formal tea banquets 
+        at court, where rare and expensive teas were served in elaborate ceremonies. The Qing emperor Qianlong, several centuries later, took this several steps further 
+        and wrote hundreds of poems about tea, passed laws about the manufacture of teaware, hosted over forty tea banquets and had fresh water and 
+        snow imported daily so that his tea could be brewed in the proper medium.  </p>
+
+<p> What I found most interesting when I was walking through the exhibition, was how much of the tradition is written. 
+  There are poems about how to brew. There are treatises on water temperature and there are rankings of tea-growing regions that read like critical reviews. 
+  The museum had a long display case of historical teaware with calligraphy inscribed directly onto the pots, short verses often written by the maker.  </p>
+
+  <p>This was, I realised at some point, why the small Taiwanese tea shops felt the way they did. The owners who brewed for me in Lugu, Luye or Alishan were performing a 
+    tradition that has been written down, argued about and refined over more than a thousand years. The thimble-sized cups, the timed steeps, the specific shape of the clay pot,
+    the gesture of pouring the first infusion that is thrown away to wake the leaves… all of this is documented, debated and inherited. </p>
+
+    <!-- PHOTO -->
+
+      <figure>
+        <img src="grasshouse.jpg" alt="Pinglin tea museum" />
+        <figcaption>Saksun houses with their grass roofs</figcaption>
+      </figure>
+
+<h2>From tea to fireworks</h2>
+ <p>
+From the tea regions, I went to Green Island, a small volcanic island off the east coast, and on my first night there, I experienced a temple festival night.
+I had spent the day exploring the island and as I walked back to my hostel I started hearing a deep rhythmic banging of drums, gongs and the sound of small explosions. 
+   I followed the sound around a corner and found a procession of three small portable temples, each carried on poles by four to eight men, being walked through the village 
+   in a particular swaying step that made the whole shrine rock back and forth. One of them was strung with neon lights and was blasting techno from speakers on its roof. 
+   Another was draped in red and silver paper streamers. The third was being shaken vigorously in front of every house, while bystanders bowed and incense was exchanged 
+   between the temple-bearers and a woman waiting at each doorstep.
+ </p>
+  
+  <p> I wanted a closer look at the ritual, so I edged toward the smallest temple just as the man carrying the front pole touched a lit incense stick to one of the red 
+    and silver streamers. The streamers were not, as I had assumed, decorative. They were strings of firecrackers. What followed was approximately two minutes of being deafened,
+    blinded and partially showered with burning paper while wedged between two house walls with no obvious exit. 
+    I am not sure I have ever stood that still in my life.   </p>
+
+    <p>The procession moved on. I joined the crowd at a (this time) more responsible distance and watched the rest of the ceremony, which built slowly towards a final scene 
+      at the village's main temple. Each temple was carried into a wall of detonating firecrackers so dense that for a few seconds the bearers and the shrine 
+      were entirely invisible inside a ball of smoke and light. Then the temple came back out again, was lifted over the threshold of the main building and 
+      disappeared inside while people were applauding. The bearers came out afterwards and were handed beer at a parked car. One had a burn on his wrist, 
+      another on his foot. Their clothes were full of small black holes.</p>
+    
+<p>I have learnt since that the noise and the red colour are meant to drive away evil spirits which is the same logic that explains why every door in Taiwan, 
+  throughout the whole year, is hung with red paper posters bearing auspicious characters. The posters are put up at Lunar New Year and stay up indefinitely. 
+  Some are very glittery, some are painted with calligraphy of flowers or zodiac animals and others are simply blocks of red with the character for fortune in gold. 
+  They are written charms. </p>
+    
+   <h2> Temple doors, gods and answers </h2>
+ <p>
+The Longshan Temple in Taipei, the oldest in the city, is dedicated to a blend of Buddhism, Taoism and Confucianism. A Taiwanese friend showed me around and explained that 
+   a temple is a kind of map and once you know how to read it, the architecture tells you who is inside, what they do and how to address them. </p>
+
+<p> You enter through the right-hand door, which represents the dragon (lucky, you walk into its mouth willingly). You leave through the left-hand door, which represents 
+  the tiger (less lucky, you would rather not walk into its mouth at all). The roof above the central deity is constructed without nails and instead is a structural tradition 
+  that interlocks the wooden beams into a self-supporting octagon. The octagon represents the Eightfold Path. Every architectural detail is doing two things at once, 
+  it is holding up the building while also meaning something. </p>
+
+  <p>In the back of the temple stand the more specific gods such as gods for firefighters, students, medicine and the dead. Each has a particular day on which they are most 
+    active and most petitioned. The student god is very busy during exam season and students leave their student ID cards on the altar the night before a test, 
+    so the god can bless them before they are carried into the exam hall. The relationship god has, in recent years, started receiving concert seating charts, 
+    with the believer's preferred seat marked in pen. People also leave wedding seating plans, with notes about which difficult relative should not be placed 
+    near which other difficult relative. I saw a concert seating chart in person. The hopeful seat was circled in red.</p>
+
+    <p>The system also accommodates questions. Beside each altar there is a box of crescent-shaped wooden blocks and you hold your yes-or-no question in your mind and 
+      drop two of them on the floor. Depending on which sides land up, you get yes, no or uncertain. If the answer is uncertain, you draw a numbered stick from a separate 
+      container, take that number to a wooden cabinet of small drawers and find inside a slip of paper with a short poem. The poem is divided into categories such as money, 
+      romance, health, study and the relevant category contains your answer, just in metaphor.</p>
+
+
+    <!-- PHOTO -->
+
+      <figure>
+        <img src="puffin.jpg" alt="Longshan temple" />
+        <figcaption>Puffins coming back from fishing</figcaption>
+      </figure>
+
+
+    <h2>What I take with me</h2>
+
+<p>
+On my last day in Taipei, I climbed Elephant Mountain to watch the sunset over Taipei 101, which is so much taller than every other building in the city. 
+  I had walked across most of the city to get there and I had passed, on that day alone, a memorial to victims of the White Terror, an entire street where every single shop 
+  sold only chairs, a bank district full of tiny temples between glass towers and a small park where teenagers were being made to jog in the hot midday sun by a teacher. 
+  Taipei is a city where eras stack on top of each other.   </p>
+
+<p> 
+What stayed with me the most is how accommodating Taiwanese are. If they realise that you are struggling to find the right bus stop, they will stop their scooters 
+  in the middle of the road to escort you to the right bus stop. If you struggle in choosing which bubble tea flavour to choose today, all the customers around 
+  you will give you their personal suggestions. As a tourist, you can just go to the country, assume you can manage and thanks to the Taiwanese you most definitely can.
+</p>
+  </article>
+
+  <!-- ARTICLE FOOTER -->
+  <footer class="article-footer">
+    <span>Chiara Meisch · 2022</span>
+    <span><a href="index.html" style="color: inherit;">← Home</a></span>
+  </footer>
+
+</div>
+
+</body>
+</html>
