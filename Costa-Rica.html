@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pure nature in Costa Rica — Chiara Meisch</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #e8f0f6;
+    --ink: #18253a;
+    --muted: #2c4a6b;
+    --rule: #5a7595;
+    --accent: #1f4180;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .italic { font-style: italic; color: var(--accent); }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 32px 80px;
+  }
+
+  /* Back link */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 56px;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  .back-link:hover .arrow {
+    transform: translateX(-3px);
+  }
+
+  .back-link .arrow {
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+
+  /* Article header */
+  .article-header {
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+  }
+
+  .article-header .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .article-header h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+
+  .article-header .subtitle {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--muted);
+    max-width: 580px;
+  }
+
+  /* Hero image */
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    margin-bottom: 56px;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.1s;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-image.empty::after {
+    content: "add hero photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Article body */
+  .article-body {
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  .article-body p {
+    margin-bottom: 22px;
+    font-size: 19px;
+    line-height: 1.75;
+  }
+
+  .article-body p.lede::first-letter {
+    font-family: 'Newsreader', serif;
+    font-size: 56px;
+    line-height: 0.85;
+    float: left;
+    padding: 6px 10px 0 0;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .article-body h2 {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.2;
+    margin: 48px 0 18px;
+    color: var(--ink);
+  }
+
+  .article-body h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 36px 0 14px;
+}
+
+  .article-body blockquote {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--muted);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 36px 0;
+  }
+
+  .article-body figure {
+    margin: 48px 0;
+  }
+
+  .article-body figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: var(--rule);
+  }
+
+  .article-body figure figcaption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Image placeholder for inline figures */
+  .image-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+    position: relative;
+  }
+
+  .image-placeholder::after {
+    content: "add photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Footer / signature */
+  .article-footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.02em;
+  }
+
+  /* Animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .container { padding: 24px 24px 56px; }
+    .article-body p { font-size: 17px; }
+    .article-body p.lede::first-letter { font-size: 44px; }
+    .article-body h2 { font-size: 24px; margin: 36px 0 14px; }
+    .article-body blockquote { font-size: 19px; padding-left: 18px; }
+    .article-footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Back link to home -->
+  <a href="index.html" class="back-link">
+    <span class="arrow">←</span> Back to home
+  </a>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="meta">Costa Rica · March 2023 </div>
+    <h1>Pure nature in Costa Rica</h1>
+    <p class="subtitle">
+      Six weeks alone with a backpack, my school Spanish and a country that says <em>pura vida</em> for absolutely everything.
+    </p>
+  </header>
+
+  <!-- HERO IMAGE -->
+    <div class="hero-image"><img src="streetview.jpg" alt="Kaohsiung" /></div>
+
+  <!-- ARTICLE BODY -->
+  <article class="article-body">
+
+    <p class="lede">
+   The first thing I did in Costa Rica was arrive with my very Castilian Spanish. I took it for five years in school and assumed that the version I had been taught 
+      (full of <em>vosotros</em>) would carry me through the bus stations. Consider me surprised when I arrived and very quickly realised that 
+      Costa Ricans speak fast, drop consonants and have an entire emotional register that runs through the phrase <em>pura vida</em>. 
+      That phrase, for an outsider, is just two words but for Costa Ricans it is a complete worldview. 
+
+    <p>
+      <h2>Pura Vida</h2>
+    <em>Pura vida</em>,  literally "pure life", is the single most common phrase in Costa Rica. It is the answer to "how are you," "thanks,", "don't worry about it” and 
+      “this is excellent." It is what the bus driver says when he takes you up even though you are clearly at the wrong stop. It is what the woman at the fruit stand 
+      says when you point at something and ask what she sells. By the end of the third week, I was using it without noticing and picked it up like a regional accent.  </p>
+      
+    <p>There are other things about Costa Rican Spanish that are very different from my school Spanish. The use of vos instead of tú is a feature shared that is with Argentina 
+      and parts of Central America but absent from Spain and Mexico and the phrase <em>tú tienes</em> turns into <em>  vos tenés</em> , 
+      with a stress shift that took me an endless number of conversations to get right. The diminutive ending <em> -tico </em> (instead of the more common <em>-ito</em>) 
+      is so characteristic that Costa Ricans are nicknamed Ticos after it and a <em> momentico </em> is <em>a little moment</em> and 
+      a phrase you hear roughly forty times a day.   </p>
+
+<p>
+What I did not expect was the complete dominance of Spanish across Costa Rica since it is a relatively recent addition to the country. 
+  Still, there are eight indigenous languages still spoken in the country: Bribri, Cabécar, Maleku, Boruca, Guaymí, Térraba, Chorotega and Huetar. 
+  Most of them are critically endangered and several have fewer than a thousand speakers left. 
+  Unfortunately, I never knowingly heard any of them. The speakers live on reservations in the south and on the Caribbean coast and the languages do not 
+  appear anywhere in public life.   </p>
+
+    <!-- PHOTO -->
+<figure>
+        <img src="handwritten-menu.jpg" alt="Handwritten menu" />
+        <figcaption>The menus of the street stands in Taiwan </figcaption>
+      </figure>
+
+    <h2> How to almost step on a snake </h2>
+    
+    <p>  Halfway through the trip, I joined four strangers from my hostel for a hike up Cerro Chato which is a dormant volcano with a crater lake at the top. 
+      The trail had been officially closed for five years but our hostel owner told us another way to get up there. We followed his suggestion and spent three hours 
+      hiking up a path that was less a path and more of a suggestion. The forest got denser as we climbed and the ferns got taller and the mud got deeper. By the time 
+      we reached the crater rim, all five of us were caked in mud up to mid-thigh, including our faces. The lake at the bottom was jade green and roughly ten degrees Celsius. 
+      Since we were sweating form our hike up there, we decided to swim in it for half an hour. 
+ </p>
+  
+    <p>  On the way back, we took a slightly different route to see a waterfall that we had heard of. 
+      I was walking ahead of two friends down the forest trail when I saw, at the very edge of my next footstep, something move, the motion was very quick. 
+      I stopped immediately, probably more out of instinct than anything else, after all I have heard about the venomous snakes. Looking down, I saw a snake about as long 
+      as my arm with a brown pattern and clearly thinking about striking the threat above or not. It chose not to and, instead, flowed sideways into the leaves and disappeared
+      in roughly two seconds. I spent the next ten minutes shaking and giggling from the shock. Later research suggested it was a Godman's pit viper, 
+      whose bite is venomous but rarely fatal which somehow does not provide quite as much comfort as you would hope.</p>
+
+      <p> Costa Rica has some of the highest snake-bite rates in Central America. According to one of the hostel owners, most of the bites happen to plantation workers on 
+        banana, coffee or palm plantations since they walk into the brush in inappropriate clothing and then often do not go to a hospital because 
+        they are undocumented Nicaraguan migrants and the hospital is expensive. The country has antivenom for nearly every species which is freely available 
+        and people still die because they cannot get to it.  </p> 
+
+    <!-- PHOTO -->
+<figure>
+        <img src="teashop.jpg" alt="Tea shop set up" />
+        <figcaption>A typical setup in a tea shop </figcaption>
+      </figure>
+
+      <h2>Tree chicken and other names</h2>
+      The first time, I went to the Costa Rican rainforest it fascinated me how few of the plants I could name. 
+    Almost every single tree was a new tree and every bird call belonged to a species I had never heard of. </p>
+
+      <p>I started trying to remember all the animals and trees that I encountered. <em>Perezoso — sloth</em>, <em>Mono congo — howler monkey </em>, the loudest land animal 
+        in the Americas, whose call sounds like a dinosaur in distress and carries five kilometres through the forest. 
+        <em> Pizote — coati </em> which is a long-nosed raccoon-relative that travels in family groups and is very interested in your unattended papaya. 
+        And of course <em> garrobo — green iguana </em>, which the locals called <em>gallina de palo</em> (tree chicken) because they used to eat them. 
+        What impressed me most was the Quetzal which is a long-tailed bird so beautiful that the Aztecs and Maya considered killing one a capital offence. 
+        I saw two on a single afternoon in a cloud-forest reserve while they were sitting in an avocado tree and snacked on it.  </p>
+
+<p> Costa Rica’s landscapes are very diverse across this rather small country so every new place also brought new animals such as leafcutter ants in Puerto Viejo 
+  that carry chunks of leaf along the forest floor in slow columns and whose path you cross constantly without realising. I saw a poison dart frog in Tortuguero, 
+  a two centimetres long, fluorescent red frog with electric-blue feet that was sitting on a wet leaf shouting at the sky in a voice many sizes too big for its body. 
+  In Drake Bay, I was lucky enough to saw manta rays jumping out of the Pacific while a Costa Rican man on the trail behind me gestured frantically and shouted 
+  <em> mira mira mira </em> until I understood that the dark shapes flapping out of the water and back in were not, as I had assumed, dolphins. </p>
+
+    <!-- PHOTO -->
+
+      <figure>
+        <img src="pinglin.jpg" alt="Pinglin tea museum" />
+        <figcaption>Teapot handrail in Pinglin</figcaption>
+      </figure>
+
+<h2>The cloud forest</h2>
+ <p>
+In the last week of the trip, I went up to Monteverde and walked into the Santa Elena cloud forest at 1800 metres of altitude, where the clouds physically sit inside the trees. 
+   It rained the entire time, lightly, which lend a special ambiance to the forest. It was so quiet that the loudest sound was the dripping of water 
+   from one leaf to the next leaf below it. Every branch was wrapped in moss thirty centimetres thick and the ferns grew to the height of houses. 
+   There were trees so completely overgrown by other plants that the original tree was no longer really a tree, just a shape inside a web of plants.
+ </p>
+  
+  <p> What I had not expected was how quiet it was. The lowland rainforest I had spent the previous month in was constantly making noise. 
+    The cloud forest, by contrast, sounds like a cathedral underwater. Sometimes a single bird would call from very far off and the call would arrive at me already softened 
+    as though the moss had eaten most of the sound on the way.    </p>
+
+    <p>I walked for two and a half hours and did not pass another person. At one point the trail opened onto a small wooden viewing platform where, 
+      in clear weather, you could apparently see Lake Arenal and the volcano on the far side. I saw clouds, moving slowly. 
+      I stood there for a long time and just enjoyed the serenity of the moment.</p>
+    
+<p>The cloud forest really was the perfect end for my trip since it made me think about how the moss has been growing on those branches for decades and 
+  how the clouds have been doing what the cloud is doing, in roughly that exact spot, for as long as the mountain has existed. 
+  The trail kept going past the viewing platform, deeper into the forest but I turned around had to walk back the way I came. 
+  The drip of water from one leaf to the next leaf below it kept going whether I was listening to it or not. It is, presumably, still going now. </p>
+
+
+    <!-- PHOTO -->
+
+       <figure>
+        <img src="/longchan-temple.jpg" alt="Longshan temple" />
+        <figcaption>The main temple of Longshan temple at night</figcaption>
+      </figure>
+  </article>
+
+  <!-- ARTICLE FOOTER -->
+  <footer class="article-footer">
+    <span>Chiara Meisch · 2022</span>
+    <span><a href="index.html" style="color: inherit;">← Home</a></span>
+  </footer>
+
+</div>
+
+</body>
+</html>
