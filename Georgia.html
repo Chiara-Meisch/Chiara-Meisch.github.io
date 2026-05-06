@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A tent under the stars in Georgia — Chiara Meisch</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #e8f0f6;
+    --ink: #18253a;
+    --muted: #2c4a6b;
+    --rule: #5a7595;
+    --accent: #1f4180;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .italic { font-style: italic; color: var(--accent); }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 32px 80px;
+  }
+
+  /* Back link */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 56px;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  .back-link:hover .arrow {
+    transform: translateX(-3px);
+  }
+
+  .back-link .arrow {
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+
+  /* Article header */
+  .article-header {
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+  }
+
+  .article-header .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .article-header h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+
+  .article-header .subtitle {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--muted);
+    max-width: 580px;
+  }
+
+  /* Hero image */
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    margin-bottom: 56px;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.1s;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-image.empty::after {
+    content: "add hero photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Article body */
+  .article-body {
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  .article-body p {
+    margin-bottom: 22px;
+    font-size: 19px;
+    line-height: 1.75;
+  }
+
+  .article-body p.lede::first-letter {
+    font-family: 'Newsreader', serif;
+    font-size: 56px;
+    line-height: 0.85;
+    float: left;
+    padding: 6px 10px 0 0;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .article-body h2 {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.2;
+    margin: 48px 0 18px;
+    color: var(--ink);
+  }
+
+  .article-body h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 36px 0 14px;
+}
+
+  .article-body blockquote {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--muted);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 36px 0;
+  }
+
+  .article-body figure {
+    margin: 48px 0;
+  }
+
+  .article-body figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: var(--rule);
+  }
+
+  .article-body figure figcaption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Image placeholder for inline figures */
+  .image-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+    position: relative;
+  }
+
+  .image-placeholder::after {
+    content: "add photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Footer / signature */
+  .article-footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.02em;
+  }
+
+  /* Animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .container { padding: 24px 24px 56px; }
+    .article-body p { font-size: 17px; }
+    .article-body p.lede::first-letter { font-size: 44px; }
+    .article-body h2 { font-size: 24px; margin: 36px 0 14px; }
+    .article-body blockquote { font-size: 19px; padding-left: 18px; }
+    .article-footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Back link to home -->
+  <a href="index.html" class="back-link">
+    <span class="arrow">←</span> Back to home
+  </a>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="meta">Georgia · June 2024 </div>
+    <h1>A tent under the stars in Georgia</h1>
+    <p class="subtitle">
+      Three weeks of hitchhiking, amazing food and a mountain I never managed to fully see.
+    </p>
+  </header>
+
+  <!-- HERO IMAGE -->
+    <div class="hero-image"><img src="/Valley.jpg" alt="Ushguli valley" /></div>
+
+  <!-- ARTICLE BODY -->
+  <article class="article-body">
+
+    <p class="lede">
+   I went to Georgia for three weeks with a tent and absolutely no knowledge of the local language. As always, my plan was to let the country surprise me and 
+      while I had places in mind that I wanted to see, I was open to see where the journey would take me. I hoped for campsites all over the country and a working bus network.
+
+      <p> Georgia is famous for their mountain roads and I got my first impression of them when I was picked up by a Georgian truck driver who did not speak any English. 
+        He was extremely cheerful, drove with one hand on the wheel and the other on his phone and was taking curves next to deep precipices with a speed and confidence 
+        of someone who had been doing this for thirty years. I spent most of the drive trying very hard to enjoy the views and not being scared. 
+      </p>
+    
+    <p>
+      <h2>A note about Georgian language</h2>
+    <em>Georgian is not an Indo-European language. It is part of the Kartvelian family, a small group of four related languages spoken almost exclusively within the borders 
+      of Georgia. It has its own alphabet, called Mkhedruli, with thirty-three letters that do not resemble Latin, Cyrillic, Greek, Arabic or any other script 
+      you might already half-recognise. Everything is written in a beautiful curling script and after a week I could pick out the letter that resembles 
+      a small spiral and the letter that looks like a curved hook. After two weeks I could decipher some of the food items on a menu. 
+    </p>
+      
+    <p>The phonology is famously difficult. Georgian has a class of consonants called ejectives which are sounds made by closing the throat and releasing air with a 
+      small popping click and that I had never personally encountered.  There are consonant clusters that look unpronounceable on the page and (for me) turned out to also 
+      be unpronounceable in the mouth. What surprised me was that even though I spoke no Georgian, a suprising amount of information could still be transferred to me just 
+      through gestures. I had conversations over kitchen tables across three weeks happened that almost entirely without spoken language just by smiling, nodding and 
+      miming actions such as eating.   </p>
+
+    <h2> A backyard in Mestia </h2>
+    
+    <p>  What I very quickly learned is that in Georgia, if you step out of a bus or car in a small town and start asking around for a campsite with a small drawn 
+      sign of a tent, people will never lead you to the campsite. Instead, they always offered me their backyard. I first learned this in Mestia, the small town in the 
+      Svaneti region that serves as the gateway to the High Caucasus. I knew there was a campsite in that town, so I assumed I would eventually find it since the town 
+      is basically one long street. 
+ </p>
+  
+    <p>  The second woman that I asked for directions after I had wandered the whole city and could not find the campsite, waved me into her garden, gestured at 
+      a flat patch of grass between her vineyard and her apple trees and made a tent shape with her hands. I set up my tent and she brought me a thermos of tea. 
+      In the morning, I woke up to her children quietly (as quiet as children can be) inspecting my tent from the outside and a cow slowly grazing grass next to my tent</p>
+
+    <!-- PHOTO -->
+<figure>
+        <img src="/cow.jpg" alt="Grazing cow" />
+        <figcaption>A cow grazing next to my tent </figcaption>
+      </figure>
+
+      <p> 
+        When I tried to take my tent down to find the campsite that I had heard of, the woman ran towards me and gesticulated wildly to let me know that I can leave it there 
+        as long as I want to. So, I spent the day wandering through the little town and the surrounding mountains while constantly taking off or putting on my jacket 
+        since the sun was very strong but there was still an icy wind blowing from the mountains. When I came back, the family apparently had some kind of celebration 
+        going on because I came back to the backyard full of people sitting at a long wooden table in the yard. A cow (hopefully not the on, I just saw in the morning) 
+        had been butchered earlier that day and various parts of it were now on the table in various stages of preparation.  
+      </p> 
+    
+    <p>
+      There was <em>khinkali </em> (Georgian dumplings) that you eat by holding the twisted top and biting into the side and drinking the broth out before it escapes. 
+      There was a platter of grilled meat that I could not identify and masses of bread, cheese and tomatoes as well as a clay jug of homemade wine. 
+      Later on, I learned that the wine in Georgia is prepared with the so-called <em>Qvevri Method</em> during which the grapes are placed in large clay jars 
+      that are then buried in the ground for fermentation and maturation. This method results in amber-coloured wines that taste very fruity. 
+    </p>
+    
+<p>
+  On top of the celebration, a football game was showed in the TV in the living room since apparently it was the first time that Georgia qualified for the 
+  European Championship. I ate for about three hours. Every ten minutes, a new toast was made and I have never been so full in my life. At the end of the dinner, 
+  when it was time for desserts I brought out (my unfortunately small amount) of German sweets that I brought as a snack during my travels and they were tried by everyone.
+</p>
+
+    <p>
+      The rest of my days in Mestia, my tent stayed in their backyard while I explored the surroundings. When it was time to leave, the children gave me a selfmade bracelet 
+      and accompanied me to the bus stop.
+    </p>
+
+      <h2>Even more Georgian food</h2>
+      My favourite single dish was <em>nigvziani badrijani</em> which translates to eggplant with walnuts. It is thin slices of eggplant, fried until soft and 
+    then rolled around a paste of ground walnuts mixed with garlic, coriander, fenugreek, vinegar and pomegranate seeds and then served cold. 
+    The first time I ate it was in Mestia and since I liked it so much, I tried to ask her how she made it. She brought out the walnuts and the eggplant and 
+    the spice jars and demonstrated the entire recipe, while I nodded and tried to remember the proportions in the hopes to recreate it. </p>
+
+      <p>
+       The other dish I cannot stop thinking about is <em>khachapuri</em> which means cheese bread. During my time in Georgia, I discovered at least four regional varieties. 
+        Some of them are flat and round, others shaped like a boat with cheese all over it and another one had a lake of cheese in the middle that was topped with a raw 
+        cracked egg that slowly cooks. Almost every dinner that I ate was served to me by someone in whose backyard I stayed and money was never accepted for it. </p>
+
+    <!-- PHOTO -->
+
+      <figure>
+        <img src="Khachapuri.jpg" alt="Khachapuri" />
+        <figcaption>Khachapuri in Mestia</figcaption>
+      </figure>
+
+<h2>Ushguli and the mountain I never saw</h2>
+ <p>
+Ushguli is a village in the Svaneti region of the Caucasus, at an altitude of roughly 2200 metres and is said to be one of the highest continuously inhabited settlements 
+   in Europe. It is also one of the most photographed villages in Georgia, primarily because of its medieval stone defensive towers which are slim four-storey watchtowers 
+   built between the eighth and twelfth centuries to defend against raiders, blood feuds and avalanches. 
+ </p>
+  
+  <p>
+    I spent four days in Ushguli and every morning woke up to the of the towers and the mountain. The mountain is called Shkhara and is the third-highest peak in Georgia 
+    and one of the highest in the whole Caucasus range but I never saw it fully. The cloud cover was completely obscuring the top, the entire time I was there.    
+  </p>
+
+    <p>
+      On my first day there, my host of the night gestured at me and made a riding motion to me. Since I have been on the back of a horse only a few times in my life, 
+      I shook my head and smiled at him and he left. One hour later, he was back with two horses and pointed at one of them, then at me. 
+      We rode (very slowly, thanks to my inexperience) for about three hours, along the dry bed of a river that, in spring, must have been flooded. 
+      What he was showing me was the way Georgians used to travel through these valleys before there were roads. The path he took followed the 
+      river bed because the river bed was the only natural flat ground in a landscape that was otherwise mountainous. 
+    </p>
+    
+<p>Ushguli at night, after the day tourists had taken their cars back down the mountain to Mestia, was the quietest place I had ever been. 
+  There were no streetlights and no traffic. The villages two hundred and fifty residents went to bed very early and enjoyed sitting outside my tent 
+  and listening to the sound of the wind moving through the towers.  </p>
+
+
+    <!-- PHOTO -->
+
+       <figure>
+        <img src="/Ushguli.JPG" alt="Ushguli" />
+        <figcaption>The Caucasus in Ushguli</figcaption>
+      </figure>
+  </article>
+
+  <h2>Four kittens, one tent</h2>
+ <p>
+The last place I camped was in Mtskheta which is set at the confluence of two rivers about twenty kilometres outside Tbilisi. The town was the royal capital from 
+   the third century BC until the sixth century AD and the Svetitskhoveli Cathedral at its centre is one of the holiest sites in Georgian Orthodox Christianity. 
+   The walls of the cathedral are covered, inside and out, with inscriptions in Mkhedruli, some of them a thousand years old. 
+ </p>
+  
+  <p>
+    I camped in a courtyard of an old couple close to the cathedral. Their cat recently had a litter of four kittens and the tent, when I pitched it, 
+    struck them as the most interesting object that had ever entered their courtyard. I tried, briefly, to keep them out but the kittens had located the points 
+    where the tent fabric met the ground and had identified them as the perfect napping spots. I woke up to the kittens sleeping inside my tent, partially on top of me 
+    and slightly snoring. When I packed up my tent, the kittens were already running around the courtyard and had forgotten the tent existed. 
+    They were busy with their next interest, which was a pile of dried apricots that was set out in the sun to dry. 
+  </p>
+
+
+  <!-- ARTICLE FOOTER -->
+  <footer class="article-footer">
+    <span>Chiara Meisch · 2024</span>
+    <span><a href="index.html" style="color: inherit;">← Home</a></span>
+  </footer>
+
+</div>
+
+</body>
+</html>
