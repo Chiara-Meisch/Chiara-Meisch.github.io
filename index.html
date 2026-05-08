@@ -213,11 +213,6 @@
     margin: 36px 0 18px;
   }
 
-  .meta-line {
-  display: block;
-  margin-top: 0.5em;
-}
-
   /* Group dividers in main column */
   .group-heading {
     font-family: 'Newsreader', serif;
@@ -382,6 +377,58 @@
     letter-spacing: 0.02em;
   }
 
+  /* Theses */
+  .theses-group {
+  margin-bottom: 1.5rem;
+}
+
+.theses-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0 0 0.5rem 0;
+  font-weight: normal;
+}
+
+.theses-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.theses-title {
+  color: var(--ink);
+  font-style: italic;
+}
+
+.theses-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.theses-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--rule);
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  transition: background-color 0.15s ease;
+}
+
+.theses-links a:hover {
+  background-color: var(--bg-alt);
+}
+
   /* Languages */
   .languages dl {
     display: grid;
@@ -530,7 +577,7 @@
       </button>
       <div class="group-children" data-group="projects">
         <a href="#writing" class="sub">Writing</a>
-        <a href="#thesis" class="sub">Thesis</a>
+        <a href="#theses" class="sub">Theses</a>
         <a href="#travel" class="sub">Travel Blog</a>
       </div>
 
@@ -582,7 +629,7 @@
       </section>
     </div>
 
-    <!-- BAND: PROJECTS (dark) - Writing + Thesis + Travel -->
+    <!-- BAND: PROJECTS (dark) - Writing + Theses + Travel -->
     <div class="band band-alt">
       <h2 class="group-heading" id="projects">Projects</h2>
 
@@ -610,34 +657,31 @@
         </ul>
       </section>
 
-      <section id="thesis">
-        <div class="section-label">Thesis</div>
-        <ul class="entry-list">
-          <li>
-            <a href="https://osf.io/3sugm/overview?view_only=fe57c3e42e7c439fb08bcab5b1c31983" target="_blank" rel="noopener" class="entry-item">
-              <span class="title">
-                Master Thesis
-                <span class="meta">Open Science Framework
-                  <span class="meta-line">Do extra-sentential distractors lead to retrieval interference? A simulated ERP study </span>    
-                  <span class="meta-line"> Thesis, materials, simulated data and analysis code in R </span>    
-              </span>
-              <span class="year">2025</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://osf.io/2fra7/overview?view_only=c6ca421fa1614b6984feadba4fbcf2ec" target="_blank" rel="noopener" class="entry-item">
-              <span class="title">
-                Bachelor Thesis
-                 <span class="meta">Open Science Framework
-                  <span class="meta-line"> Can we investigate morphological processing over the web?  A web-based replication of a masked morphological 
-                  priming experiment with non-native speakers</span>    
-                  <span class="meta-line"> Thesis, materials, anonymised data and analysis code in R </span>    
-                 </span>
-              <span class="year">2022</span>
-            </a>
-          </li>
-        </ul>
-      </section>
+      <section id="theses">
+  <div class="section-label">Theses</div>
+
+  <div class="theses-group">
+    <h3 class="theses-category">Master thesis</h3>
+    <div class="theses-entry">
+      <span class="theses-title">[Your master thesis title]</span>
+      <span class="theses-links">
+        <a href="https://github.com/Chiara-Meisch/Chiara-Meisch.github.io/blob/main/theses/master_thesis_chiara_meisch.pdf" target="_blank" rel="noopener">PDF</a>
+        <a href="https://osf.io/3sugm/overview?view_only=fe57c3e42e7c439fb08bcab5b1c31983" target="_blank" rel="noopener">Code</a>
+      </span>
+    </div>
+  </div>
+
+  <div class="theses-group">
+    <h3 class="theses-category">Bachelor thesis</h3>
+    <div class="theses-entry">
+      <span class="theses-title">[Your bachelor thesis title]</span>
+      <span class="theses-links">
+        <a href="https://github.com/Chiara-Meisch/Chiara-Meisch.github.io/blob/main/theses/bachelor_thesis_chiara_meisch.pdf" target="_blank" rel="noopener">PDF</a>
+        <a href="https://osf.io/2fra7/overview?view_only=c6ca421fa1614b6984feadba4fbcf2ec" target="_blank" rel="noopener">Code</a>
+      </span>
+    </div>
+  </div>
+</section>
 
       <section id="travel">
         <div class="section-label">From my travel blog</div>
