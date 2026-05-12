@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Georgian eggplant walnut rolls · Chiara Meisch</title>
-  <link rel="stylesheet" href="../style.css">
-</head>
-<body>
-  
+  <title>Georgian eggplant walnut rolls · Chiara Meisch </title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -19,6 +16,7 @@
     --muted: #2c4a6b;
     --rule: #5a7595;
     --accent: #1f4180;
+    --bg-alt: #dde8f1;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -171,67 +169,66 @@
   }
 
   .article-body h3 {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin: 36px 0 14px;
-}
-
-  .article-body blockquote {
-    font-family: 'Newsreader', serif;
-    font-style: italic;
-    font-size: 22px;
-    line-height: 1.5;
-    color: var(--muted);
-    border-left: 2px solid var(--accent);
-    padding: 4px 0 4px 24px;
-    margin: 36px 0;
-  }
-
-  .article-body figure {
-    margin: 48px 0;
-  }
-
-  .article-body figure img {
-    width: 100%;
-    height: auto;
-    display: block;
-    background: var(--rule);
-  }
-
-  .article-body figure figcaption {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
+    font-size: 14px;
+    letter-spacing: 0.04em;
     color: var(--muted);
-    margin-top: 12px;
-    letter-spacing: 0.02em;
-  }
-
-  /* Image placeholder for inline figures */
-  .image-placeholder {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
-    position: relative;
-  }
-
-  .image-placeholder::after {
-    content: "add photo";
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--bg);
-    letter-spacing: 0.06em;
     text-transform: uppercase;
+    margin: 36px 0 14px;
   }
 
-  /* Footer / signature */
+  /* Recipe-specific */
+  .recipe-list {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0;
+  }
+
+  .recipe-list li {
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .recipe-list li:last-child {
+    border-bottom: none;
+  }
+
+  .recipe-optional {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted);
+    padding: 14px 18px;
+    background: var(--bg-alt);
+    border-left: 2px solid var(--accent);
+    margin: 20px 0;
+  }
+
+  .recipe-optional strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .recipe-steps {
+    margin: 24px 0;
+    padding-left: 24px;
+  }
+
+  .recipe-steps li {
+    font-size: 19px;
+    line-height: 1.75;
+    margin-bottom: 18px;
+    padding-left: 8px;
+  }
+
+  .recipe-steps li::marker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+  }
+
+  /* Footer */
   .article-footer {
     margin-top: 80px;
     padding-top: 32px;
@@ -257,68 +254,90 @@
     .article-body p { font-size: 17px; }
     .article-body p.lede::first-letter { font-size: 44px; }
     .article-body h2 { font-size: 24px; margin: 36px 0 14px; }
-    .article-body blockquote { font-size: 19px; padding-left: 18px; }
+    .recipe-list li { font-size: 16px; }
+    .recipe-steps li { font-size: 17px; }
     .article-footer { flex-direction: column; gap: 8px; }
   }
 </style>
 </head>
 <body>
-<!-- ARTICLE HEADER -->
 
-<article class="article">
-  <a href="../index.html#recipes" class="back-link">← Back to recipes</a>
+  <div class="container">
 
-  <header class="article-header">
-    <div class="meta">Georgia · roughly 20 rolls · 1 hour</div>
-    <h1>Georgian eggplant walnut rolls</h1>
-    <p class="subtitle"><em>Nigvziani badrijani</em> — an appetiser I discovered in Mestia and have been perfecting ever since.</p>
-  </header>
+    <!-- Back link -->
+    <a href="../index.html#recipes" class="back-link">
+      <span class="arrow">←</span> Back to recipes
+    </a>
 
-  <figure class="article-hero">
-    <img src="../images/nigvziani-badrijani.jpg" alt="Georgian eggplant rolls with pomegranate seeds">
-  </figure>
+    <!-- ARTICLE HEADER -->
+    <header class="article-header">
+      <div class="meta">Georgia · roughly 20 rolls · 1 hour</div>
+      <h1>Georgian eggplant walnut rolls</h1>
+      <p class="subtitle">
+        <em>Nigvziani badrijani</em> — an appetiser I discovered in Mestia and have been perfecting ever since.
+      </p>
+    </header>
 
-  <p>I first tried this dish in Mestia, made by my host when I was travelling through Georgia. It was served as an appetiser before almost every meal, alongside cheese, bread
-    and whatever else was cooked on that day. It pairs perfectly with a dark Georgian wine and Khachapuri.</p>
+    <!-- HERO IMAGE -->
+    <div class="hero-image"><img src="../images/nigvziani-badrijani.jpg" alt="Georgian eggplant rolls with pomegranate seeds" /></div>
 
-  <p>The walnut paste is the centre of the dish. Once you have it right, the eggplant is just enhancing the flavours of the delicious walnut paste. 
-    In case you have leftover paste, it is delicious on bread as well. The recipe below makes around twenty rolls.</p>
+    <!-- ARTICLE BODY -->
+    <article class="article-body">
 
-  <h2>Ingredients</h2>
+      <p class="lede">
+        I first tried this dish in Mestia, made by my host when I was travelling through Georgia. It was served as an appetiser before almost every meal, alongside cheese, 
+        bread and whatever else was cooked on that day. It pairs perfectly with a dark Georgian wine and Khachapuri.
+      </p>
 
-  <ul class="recipe-list">
-    <li>4 medium eggplants</li>
-    <li>250g walnuts</li>
-    <li>2 garlic cloves</li>
-    <li>1 teaspoon Khmeli Suneli (see below how to make it)</li>
-    <li>1 tablespoon vinegar (or lemon/lime juice or dry white wine)</li>
-    <li>½ teaspoon ground coriander</li>
-    <li>¼ red onion, finely chopped</li>
-    <li>Olive oil</li>
-    <li>Pomegranate seeds, for serving</li>
-    <li>Warm water (or pomegranate juice or molasses)</li>
-    <li>Salt and pepper</li>
-  </ul>
+      <p>
+        The walnut paste is the centre of the dish. Once you have it right, the eggplant is just enhancing the flavours of the delicious walnut paste. 
+        In case you have leftover paste, it is delicious on bread as well. The recipe below makes around twenty rolls.
+      </p>
 
-  <p class="recipe-optional"><strong>Optional, for a spicy version:</strong> ½ green chilli pepper, finely chopped.</p>
+      <h2>Ingredients</h2>
 
-  <p class="recipe-optional"><strong>To make Khmeli Suneli from scratch:</strong> 1 teaspoon of each fenugreek, fresh coriander, parsley, dill, mint, 3 bay leaves and ½ teaspoon spicy paprika powder.</p>
+      <ul class="recipe-list">
+        <li>4 medium eggplants</li>
+        <li>250g walnuts</li>
+        <li>2 garlic cloves</li>
+        <li>1 teaspoon Khmeli Suneli (see below how to make it)</li>
+        <li>1 tablespoon vinegar (or lemon/lime juice or dry white wine)</li>
+        <li>½ teaspoon ground coriander</li>
+        <li>¼ red onion, finely chopped</li>
+        <li>Olive oil</li>
+        <li>Pomegranate seeds, for serving</li>
+        <li>Warm water (or pomegranate juice or molasses)</li>
+        <li>Salt and pepper</li>
+      </ul>
 
-  <h2>Method</h2>
+      <p class="recipe-optional"><strong>Optional, for a spicy version:</strong> ½ green chilli pepper, finely chopped.</p>
 
-  <ol class="recipe-steps">
-    <li>Preheat the oven to 180°C.</li>
-    <li>Slice the eggplants lengthways into thin slices, under 1cm each.</li>
-    <li>Brush the slices with olive oil and bake for 25 minutes until soft, flipping halfway through. You can also barbecue or pan-fry them.</li>
-    <li>While the eggplant cooks, roast the walnuts in a dry pan until fragrant. Let them cool.</li>
-    <li>Add the walnuts to a food blender with the Khmeli Suneli, ground coriander, garlic, vinegar, chopped onion, chilli (if using), salt and pepper.</li>
-    <li>Blend until smooth, adding a little warm water (or pomegranate juice) as needed to reach a creamy and spreadable consistency.</li>
-    <li>Taste and adjust with more salt, vinegar or water until the paste is balanced.</li>
-    <li>When the eggplant slices have cooled, spread one to two tablespoons of walnut paste on the short rounded edge of each slice, then roll them up.</li>
-    <li>Place the rolls seam-side down on a serving plate.</li>
-    <li>Serve at room temperature, sprinkled with pomegranate seeds.</li>
-  </ol>
-</article>
+      <p class="recipe-optional"><strong>To make Khmeli Suneli from scratch:</strong> 1 teaspoon of each fenugreek, fresh coriander, parsley, dill, mint, 3 bay leaves and ½ teaspoon spicy paprika powder.</p>
+
+      <h2>Method</h2>
+
+      <ol class="recipe-steps">
+        <li>Preheat the oven to 180°C.</li>
+        <li>Slice the eggplants lengthways into thin slices, under 1cm each.</li>
+        <li>Brush the slices with olive oil and bake for 25 minutes until soft, flipping halfway through. You can also barbecue or pan-fry them.</li>
+        <li>While the eggplant cooks, roast the walnuts in a dry pan until fragrant. Let them cool.</li>
+        <li>Add the walnuts to a food blender with the Khmeli Suneli, ground coriander, garlic, vinegar, chopped onion, chilli (if using), salt and pepper.</li>
+        <li>Blend until smooth, adding a little warm water (or pomegranate juice) as needed to reach a creamy and spreadable consistency.</li>
+        <li>Taste and adjust with more salt, vinegar or water until the paste is balanced.</li>
+        <li>When the eggplant slices have cooled, spread one to two tablespoons of walnut paste on the short rounded edge of each slice, then roll them up.</li>
+        <li>Place the rolls seam-side down on a serving plate.</li>
+        <li>Serve at room temperature, sprinkled with pomegranate seeds.</li>
+      </ol>
+
+    </article>
+
+    <!-- ARTICLE FOOTER -->
+    <footer class="article-footer">
+      <span> Chiara Meisch· 2026</span>
+      <span><a href="../index.html" style="color: inherit;">← Home</a></span>
+    </footer>
+
+  </div>
 
 </body>
 </html>
