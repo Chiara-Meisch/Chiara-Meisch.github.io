@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why English and Korean speakers make different mistakes in Chinese </title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #e8f0f6;
+    --ink: #18253a;
+    --muted: #2c4a6b;
+    --rule: #5a7595;
+    --accent: #1f4180;
+    --bg-alt: #dde8f1;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .italic { font-style: italic; color: var(--accent); }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 32px 80px;
+  }
+
+  /* Back link */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 56px;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .back-link:hover { color: var(--accent); }
+  .back-link:hover .arrow { transform: translateX(-3px); }
+  .back-link .arrow { transition: transform 0.2s ease; display: inline-block; }
+
+  /* Article header */
+  .article-header {
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+  }
+
+  .article-header .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .article-header .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .article-header h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+
+  .article-header .subtitle {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--muted);
+    max-width: 580px;
+  }
+
+  /* Hero image */
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    margin-bottom: 56px;
+    background: linear-gradient(135deg, var(--rule) 0%, var(--muted) 100%);
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.1s;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-image.empty::after {
+    content: "add hero photo";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--bg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Article body */
+  .article-body {
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  .article-body p {
+    margin-bottom: 22px;
+    font-size: 19px;
+    line-height: 1.75;
+  }
+
+  .article-body p.lede::first-letter {
+    font-family: 'Newsreader', serif;
+    font-size: 56px;
+    line-height: 0.85;
+    float: left;
+    padding: 6px 10px 0 0;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .article-body h2 {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.2;
+    margin: 48px 0 18px;
+    color: var(--ink);
+  }
+
+  .article-body blockquote {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--muted);
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 36px 0;
+  }
+
+  /* Pull-quote box for key facts */
+  .key-fact {
+    background: var(--bg-alt);
+    border-left: 2px solid var(--accent);
+    padding: 20px 24px;
+    margin: 32px 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  .key-fact strong {
+    font-weight: 500;
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  /* Reference section */
+  .article-reference {
+    margin-top: 56px;
+    padding: 24px 28px;
+    background: var(--bg-alt);
+    border-left: 2px solid var(--accent);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .article-reference strong {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .article-reference a {
+    color: var(--accent);
+    word-break: break-word;
+  }
+
+  /* Footer */
+  .article-footer {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.02em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .container { padding: 24px 24px 56px; }
+    .article-body p { font-size: 17px; }
+    .article-body p.lede::first-letter { font-size: 44px; }
+    .article-body h2 { font-size: 24px; margin: 36px 0 14px; }
+    .article-body blockquote { font-size: 19px; padding-left: 18px; }
+    .key-fact { padding: 16px 18px; }
+    .article-footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+
+    <a href="../index.html#writing" class="back-link">
+      <span class="arrow">←</span> Back to writing
+    </a>
+
+    <header class="article-header">
+      <div class="kicker">News from linguistics</div>
+      <div class="meta">Science communication · 4 min read</div>
+      <h1>Why English and Korean speakers make different mistakes in Chinese</h1>
+      <p class="subtitle">
+        A new study shows that our mother tongue shapes how we learn foreign languages, sometimes helping us along and sometimes getting in the way.
+      </p>
+    </header>
+
+    <div class="hero-image empty"></div>
+
+    <article class="article-body">
+
+      <p class="lede">
+        Anyone who has learned a foreign language knows that some rules come easily, while others stay difficult even after years of practice. A new study by the linguist 
+        Jiajia Su now shows why and that the answer has a lot to do with the language we already speak.
+      </p>
+
+      <p>
+        Su examined how native English and Korean speakers learn the Chinese plural marker <em>-men</em>. This small suffix, similar in some ways to the German 
+        <em>-en</em> in <em>Katzen</em>, follows its own clear rules in Chinese: it can only be used for people, not for animals or objects
+        and only when referring to specific, identifiable individuals.
+      </p>
+
+      <p>
+        What is surprising is that although both English and Korean have plural forms of their own, the two groups of learners made completely different mistakes when 
+        learning Chinese.
+      </p>
+
+      <h2>When the mother tongue helps, and when it gets in the way</h2>
+
+      <p>
+        The Korean learners had an advantage. Their mother tongue also distinguishes between definite and indefinite plural forms and they quickly understood when 
+        <em>-men</em> should be used. But they struggled with grammatical rules that work differently in Korean, especially the way <em>-men</em> interacts with numerals.
+      </p>
+
+      <p>
+        The native English speakers showed the opposite pattern. They first had to learn the distinction between definite and indefinite plural forms, which 
+        English does not mark in the same way. But once they had understood it, they had fewer problems with the grammatical restrictions on where <em>-men</em> can appear.
+      </p>
+
+      <div class="key-fact">
+        <strong>The plural marker -men</strong>
+        Can only be used for people, not animals or objects. Refers to specific, identifiable individuals. 
+        Interacts in complex ways with numerals which might be a source of difficulty for learners.
+      </div>
+
+      <h2>How our brain organises languages</h2>
+
+      <p>
+        Su argues that these results support the <em>Feature Reassembly Hypothesis</em>. This theory supposes that when we learn a foreign language, we begin by 
+        mapping the grammatical patterns of our mother tongue onto the new language. Only over time do we reassemble these mental structures to fit the language 
+        we are trying to learn.
+      </p>
+
+      <p>
+        The good news is that, in the end, all of the learners in Su's study were able to acquire the rules of the Chinese plural marker, 
+        even if the path was different depending on where they started from. Advanced learners showed almost no differences from native speakers at all.
+      </p>
+
+      <h2>Why this matters for language teaching</h2>
+
+      <p>
+        The findings have a practical implication for language teaching. Teachers should be aware that learners coming from different language backgrounds will face 
+        different challenges, even when they are learning the same rule. A one-size-fits-all approach falls short. A Korean speaker and an English speaker walking into 
+        the same Chinese class are, in a real sense, learning slightly different things.
+      </p>
+
+      <p>
+        Su's study included 92 participants in total of which 32 were native English speakers, 35 native Korean speakers and 25 native Chinese speakers who served as 
+        a control group. The results were published in the journal <em>Linguistic Approaches to Bilingualism</em>.
+      </p>
+
+      <div class="article-reference">
+        <strong>Reference</strong>
+        Su, J. (2022). L2 acquisition of the Chinese plural marker <em>-men</em> by English and Korean speakers. 
+        <em>Linguistic Approaches to Bilingualism</em>. <a href="https://doi.org/10.1075/lab.21025.su" target="_blank" rel="noopener">https://doi.org/10.1075/lab.21025.su</a>
+      </div>
+
+    </article>
+
+    <footer class="article-footer">
+      <span>Chiara Meisch· 2026</span>
+      <span><a href="../index.html" style="color: inherit;">← Home</a></span>
+    </footer>
+
+  </div>
+
+</body>
+</html>
